@@ -97,7 +97,6 @@ export default class Camera extends EventEmitter {
             event.preventDefault();
             // @ts-ignore
             if (event.target.id === 'prevent-click') return;
-            console.log(this.garageDoneAnimating)
             // print target and current keyframe
             if (
                 (this.currentKeyframe === CameraKey.IDLE ||

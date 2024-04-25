@@ -3,8 +3,6 @@ import Resources from '../Utils/Resources';
 import ComputerSetup from './Computer';
 import MonitorScreen from './MonitorScreen';
 import ShopWalls from './ShopWalls';
-import CVPaper from './CVPaper';
-import CoffeeSteam from './CoffeeSteam';
 import Hitboxes from './Hitboxes';
 import AudioManager from '../Audio/AudioManager';
 import Screens from './Screens';
@@ -31,8 +29,6 @@ export default class World {
     environment: ShopWalls;
     computerSetup: ComputerSetup;
     monitorScreen: MonitorScreen;
-    cvPaper: CVPaper;
-    coffeeSteam: CoffeeSteam;
     audioManager: AudioManager;
     hitbox : Hitboxes
     screens: Screens
@@ -70,14 +66,8 @@ export default class World {
   
             this.computerSetup = new ComputerSetup();
             this.monitorScreen = new MonitorScreen();
-            //this.coffeeSteam = new CoffeeSteam();
             this.audioManager = new AudioManager();
-            //this.cvPaper = new CVPaper();
             //this.hitbox = new Hitboxes();
-            console.log("Scene graph:", this.scene);
-            this.scene.traverse((object) => {
-              console.log(object);
-            });
             this.addBillBoardScreen()
             this.addReflectiveFloor();
             this.addSpotLight();

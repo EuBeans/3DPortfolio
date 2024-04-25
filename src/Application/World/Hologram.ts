@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import Application from '../Application';
-import { guiParams } from '../Utils/GuiParams';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import UIEventBus from '../UI/EventBus';
 
@@ -25,7 +24,7 @@ export default class Hologram {
         this.loader.load('models/Decors2/Hologram.obj', (object) => {
             const combinedPositions = this.combineBuffer(object, 'position');
             
-            this.createMesh(combinedPositions, 900, 0, 0, -50, 0xFFFFFF);
+            this.createMesh(combinedPositions, 900, 0, 0, 0, 0xFFFFFF);
             
         }, undefined, (error) => {
             console.error('An error happened while loading the model:', error);

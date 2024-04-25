@@ -56,7 +56,6 @@ export default class Decords {
         bloomObjects.forEach((objectName) => {
             const object = this.bakedModel.getModel().getObjectByName(objectName);
             if (object) {
-                console.log(object.name);
                 object.layers.enable(BLOOM_SCENE_LAYER);
             }
         });
