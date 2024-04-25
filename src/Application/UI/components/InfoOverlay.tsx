@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import FreeCamToggle from './FreeCamToggle';
 import MuteToggle from './MuteToggle';
-
+import {StyleSheetCSS} from '../../../types';
 interface InfoOverlayProps {
     visible: boolean;
 }

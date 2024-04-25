@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import Application from '../Application';
 import { AmbienceAudio, ComputerAudio } from './AudioSources';
 import UIEventBus from '../UI/EventBus';
+import { LoadedAudio } from '../../types';
 
 const POS_DEBUG = false;
 const DEFAULT_REF_DISTANCE = 10000;

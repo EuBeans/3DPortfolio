@@ -2,17 +2,21 @@ import * as THREE from 'three';
 import Application from '../Application';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import UIEventBus from '../UI/EventBus';
+import Resources from '../Utils/Resources';
+
 
 export default class Hologram {
     application: Application;
     scene: THREE.Scene;
     loader: OBJLoader;
     mesh: THREE.Points;
+    resources: Resources;
 
     constructor() {
         this.application = new Application();
         this.loader = new OBJLoader();
         this.scene = this.application.scene;
+        this.resources = this.application.resources;
         this.loadModel();
         UIEventBus.on('loadingScreenDone', () => {
             this.animate();
@@ -21,14 +25,10 @@ export default class Hologram {
     }
 
     loadModel(){
-        this.loader.load('models/Decors2/Hologram.obj', (object) => {
-            const combinedPositions = this.combineBuffer(object, 'position');
-            
-            this.createMesh(combinedPositions, 900, 0, 0, 0, 0xFFFFFF);
-            
-        }, undefined, (error) => {
-            console.error('An error happened while loading the model:', error);
-        });
+        const object = this.resources.items.objModel.hologramModel;
+        const combinedPositions = this.combineBuffer(object, 'position');
+        this.createMesh(combinedPositions, 900, 0, 0, 0, 0xFFFFFF);
+        
     }
     
     combineBuffer(model: THREE.Object3D, bufferName: string) {

@@ -59,8 +59,8 @@ export default class World {
             this.decors = new Decors();
             this.animatedProps = new AnimatedProps();
             //this.rain = new Rain();
-            //this.HoloHelpSreen = new HoloHelpSreen();
-            //this.hologram = new Hologram();
+            this.HoloHelpSreen = new HoloHelpSreen();
+            this.hologram = new Hologram();
 
            
   
@@ -104,8 +104,8 @@ export default class World {
 
         this.reflector = new Reflector(planeGeometry, {
             color: 0x777777,
-            textureWidth: window.innerWidth * window.devicePixelRatio/ 4,
-            textureHeight: window.innerHeight * window.devicePixelRatio/ 4,
+            textureWidth: window.innerWidth * window.devicePixelRatio/ 5,
+            textureHeight: window.innerHeight * window.devicePixelRatio/ 5,
             clipBias: 0.004,
             multisample: 0.05,
             });

@@ -4,6 +4,7 @@ import HolographicMaterial from '../Utils/HolographicMaterialVanilla';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import Application from '../Application';
+import Resources from '../Utils/Resources';
 
 
 export default class HoloHelpScreen {
@@ -11,11 +12,13 @@ export default class HoloHelpScreen {
     scene: THREE.Scene;
     loader: GLTFLoader;
     holographicMaterial: HolographicMaterial;
+    resources: Resources;
 
     constructor() {
         this.application =  new Application();;
         this.scene = this.application.scene;
         this.loader = new GLTFLoader();
+        this.resources = this.application.resources;
         this.holographicMaterial = new HolographicMaterial({
             fresnelOpacity: 0.2,
             fresnelAmount: 0.1,
@@ -37,19 +40,18 @@ export default class HoloHelpScreen {
 
     loadModel() {
         const holographicMaterial = this.holographicMaterial;
-        this.loader.load('models/Decors2/HologramHelper.glb', (gltf) => {
-            gltf.scene.traverse((child) => {
+        const model = this.resources.items.gltfModel.hologramHelperModel;
+        
+        model.scene.traverse((child) => {
                 if ((child as THREE.Mesh).isMesh) {
                     (child as THREE.Mesh).material = holographicMaterial;
                 }
             });
-            // Adjust the model position and scale as needed
-            gltf.scene.position.set(0, 0, 0);
-            gltf.scene.scale.set(900, 900, 900);
-            this.scene.add(gltf.scene);
-        }, undefined, (error) => {
-            console.error('An error happened while loading the model:', error);
-        });
+        // Adjust the model position and scale as needed
+        model.scene.position.set(0, 0, 0);
+        model.scene.scale.set(900, 900, 900);
+        this.scene.add(model.scene);
+        
     }
 
     startAnimationLoop() {

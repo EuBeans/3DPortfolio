@@ -1,9 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import Application from '../Application';
 import UIEventBus from '../UI/EventBus';
 import EventEmitter from './EventEmitter';
 import Loading from './Loading';
+import { Resource, LoadedResource, LoadedModel, LoadedTexture, LoadedCubeTexture, LoadedAudio ,LoadedObjModel} from '../../types';
 
 export default class Resources extends EventEmitter {
     sources: Resource[];
@@ -13,13 +15,14 @@ export default class Resources extends EventEmitter {
         cubeTexture: { [name: string]: LoadedCubeTexture };
         gltfModel: { [name: string]: LoadedModel };
         audio: { [name: string]: LoadedAudio };
+        objModel: { [name: string]: LoadedObjModel };   
     };
     toLoad: number;
     loaded: number;
     loaders: {
         gltfLoader: GLTFLoader;
         textureLoader: THREE.TextureLoader;
-        
+        objLoader: OBJLoader;
         cubeTextureLoader: THREE.CubeTextureLoader;
         audioLoader: THREE.AudioLoader;
     };
@@ -31,7 +34,7 @@ export default class Resources extends EventEmitter {
 
         this.sources = sources;
 
-        this.items = { texture: {}, cubeTexture: {}, gltfModel: {}, audio: {} };
+        this.items = { texture: {}, cubeTexture: {}, gltfModel: {}, audio: {}, objModel: {} };
         this.toLoad = this.sources.length;
         this.loaded = 0;
         this.application = new Application();
@@ -47,6 +50,7 @@ export default class Resources extends EventEmitter {
             textureLoader: new THREE.TextureLoader(),
             cubeTextureLoader: new THREE.CubeTextureLoader(),
             audioLoader: new THREE.AudioLoader(),
+            objLoader: new OBJLoader(),
         };
     }
 
@@ -69,6 +73,10 @@ export default class Resources extends EventEmitter {
             } else if (source.type === 'audio') {
                 this.loaders.audioLoader.load(source.path, (buffer) => {
                     this.sourceLoaded(source, buffer);
+                });
+            } else if (source.type === 'objModel') {
+                this.loaders.objLoader.load(source.path, (file) => {
+                    this.sourceLoaded(source, file);
                 });
             }
         }

@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { guiParams } from './GuiParams';
+import { LoadedModel, LoadedTexture } from '../../types';
+
 export default class BakedModel {
     model: LoadedModel;
     texture: LoadedTexture;

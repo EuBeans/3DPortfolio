@@ -1,3 +1,5 @@
+import { Resource } from '../types';
+
 const sources: Resource[] = [
     {
         name: 'computerSetupModel',
@@ -103,13 +105,18 @@ const sources: Resource[] = [
     },
     {
         name: 'hologramModel',
-        type: 'gltfModel',
-        path: 'models/Decors2/Hologram.glb',
+        type: 'objModel',
+        path: 'models/Decors2/Hologram.obj',
     },
     {
         name: 'animatedPropsModel',
         type: 'gltfModel',
         path: 'models/AnimatedProps/AnimatedProps.glb',
+    },
+    {
+        name: 'hologramHelperModel',
+        type: 'gltfModel',
+        path: 'models/Decors2/HologramHelper.glb',
     },
     {
         name: 'animatedPropsTexture',

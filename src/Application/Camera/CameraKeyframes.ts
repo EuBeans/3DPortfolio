@@ -5,6 +5,7 @@ import Application from '../Application';
 import Mouse from '../Utils/Mouse';
 import Sizes from '../Utils/Sizes';
 import { guiParams } from '../Utils/GuiParams';
+import {CameraKeyframe} from '../../types';
 export class CameraKeyframeInstance {
     position: THREE.Vector3;
     focalPoint: THREE.Vector3;

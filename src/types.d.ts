@@ -2,11 +2,19 @@ type Resource =
     | TextureResource
     | CubeTextureResource
     | ModelResource
-    | AudioResource;
+    | AudioResource
+    | ObjModelResource;
+    
 
 declare interface StyleSheetCSS {
     [key: string]: React.CSSProperties;
 }
+
+type ObjModelResource = {
+    name: string;
+    type: 'objModel';
+    path: string;
+};
 
 type TextureResource = {
     name: string;
@@ -48,7 +56,11 @@ type LoadedResource =
     | LoadedTexture
     | LoadedCubeTexture
     | LoadedModel
-    | LoadedAudio;
+    | LoadedAudio
+    | LoadedObjModel;
+
+import { Group } from 'three';
+type LoadedObjModel = Group;
 
 type LoadedTexture = THREE.Texture;
 
@@ -58,4 +70,4 @@ type LoadedCubeTexture = THREE.CubeTexture;
 
 type LoadedAudio = AudioBuffer;
 
-type ResourceType = 'texture' | 'cubeTexture' | 'gltfModel';
+type ResourceType = 'texture' | 'cubeTexture' | 'gltfModel'|'objModel';

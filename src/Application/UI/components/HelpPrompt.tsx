@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 // import eventBus from '../EventBus';
 import { motion } from 'framer-motion';
 import UIEventBus from '../EventBus';
-
+import {StyleSheetCSS} from '../../../types';
 const HELP_TEXT = 'Click anywhere to begin';
 
 type HelpPromptProps = {};

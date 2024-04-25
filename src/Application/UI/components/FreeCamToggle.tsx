@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import UIEventBus from '../EventBus';
 import { Easing } from '../Animation';
+import {StyleSheetCSS} from '../../../types';
 // @ts-ignore
 import camera from '../../../../static/textures/UI/camera.svg';
 // @ts-ignore
