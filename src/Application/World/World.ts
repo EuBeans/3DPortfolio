@@ -13,7 +13,7 @@ import * as THREE from 'three';
 import { Reflector } from 'three/examples/jsm/objects/Reflector';
 import { guiParams } from '../Utils/GuiParams';
 import BillBoardScreen from './BillBoardScreen';
-import Rain from './Rain';
+//import Rain from './Rain';
 import AnimatedProps from './AnimatedProps';
 import UIEventBus from '../UI/EventBus';
 import HoloHelpSreen from './HoloHelpSreen';
@@ -36,7 +36,7 @@ export default class World {
     cablesAndPipes: CablesAndPipes
     decors: Decors
     reflector: Reflector
-    rain: Rain;
+    //rain: Rain;
     animatedProps: AnimatedProps
     HoloHelpSreen: HoloHelpSreen
     hologram: Hologram
@@ -58,9 +58,9 @@ export default class World {
             this.cablesAndPipes = new CablesAndPipes();
             this.decors = new Decors();
             this.animatedProps = new AnimatedProps();
-            this.rain = new Rain();
-            this.HoloHelpSreen = new HoloHelpSreen();
-            this.hologram = new Hologram();
+            //this.rain = new Rain();
+            //this.HoloHelpSreen = new HoloHelpSreen();
+            //this.hologram = new Hologram();
 
            
   
@@ -186,7 +186,7 @@ export default class World {
         if (this.decors) this.decors.update();
         if (this.BillBoardScreen) this.BillBoardScreen.forEach(screen => screen.update());
         if(this.dimPlane) this.updateReflection();
-        if(this.rain) this.rain.update();
+        //if(this.rain) this.rain.update();
         if(this.animatedProps) this.animatedProps.update();
         if(this.HoloHelpSreen) this.HoloHelpSreen.update();
         if(this.hologram) this.hologram.update();
