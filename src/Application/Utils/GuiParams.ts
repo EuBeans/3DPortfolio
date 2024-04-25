@@ -1,13 +1,13 @@
 export const guiParams = {
     bloom: {
         threshold: 0,
-        strength: 4,
-        radius: 0.1,
+        strength: 2.75,
+        radius: 0.5,
         exposure: 1,
     },
     reflection: {
         opacity: 0.758,
-        position: 27,  // Updated from 19.2
+        position: 30,  // Updated from 19.2
         roughness: 1,
     },
     camera: {
@@ -40,7 +40,7 @@ export const guiParams = {
         penumbra: 1,
     },
     hologramLightSource: {
-        intensity: 30,
+        intensity: 9,
         x: 0,
         y: 16540,
         z: 0,
@@ -56,7 +56,7 @@ export const guiParams = {
         decay: 1,
     },
     spotLight1: {
-        intensity: 30,  // Updated from 40
+        intensity: 20,  // Updated from 40
         x: -14900,  // Updated from -17400
         y: 10660,
         z: 2900,  // Updated from 4200
@@ -66,7 +66,7 @@ export const guiParams = {
         penumbra: 0,  // Updated from 1
     },
     spotLight2: {
-        intensity: 30,  // Updated from 40
+        intensity: 20,  // Updated from 40
         x: -6000,  // Updated from -7200
         y: 11100,  // Updated from 10660
         z: 16900,  // Updated from 18200
@@ -76,7 +76,7 @@ export const guiParams = {
         penumbra: 0,  // Updated from 1
     },
     spotLight3: {
-        intensity: 30,  // Updated from 40
+        intensity: 20,  // Updated from 40
         x: 14400,  // Updated from 19500
         y: 10850,
         z: -4700,  // Updated from -2200
@@ -86,7 +86,7 @@ export const guiParams = {
         penumbra: 0,  // Updated from 1
     },
     spotLight4: {
-        intensity: 30,  // Updated from 40
+        intensity: 20,  // Updated from 40
         x: 5500,  // Updated from 1700
         y: 10840,
         z: -14900,  // Updated from -18700

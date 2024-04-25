@@ -71,7 +71,7 @@ export default class Hologram {
 
         const mat = new THREE.PointsMaterial({ 
             color: 0x5e4198, 
-            size: 10 
+            size: 10
         })
         mat.transparent = true;
         mat.opacity = 0.1;
