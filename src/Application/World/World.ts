@@ -104,8 +104,8 @@ export default class World {
 
         this.reflector = new Reflector(planeGeometry, {
             color: 0x777777,
-            textureWidth: window.innerWidth * window.devicePixelRatio,
-            textureHeight: window.innerHeight * window.devicePixelRatio,
+            textureWidth: window.innerWidth * window.devicePixelRatio/ 4,
+            textureHeight: window.innerHeight * window.devicePixelRatio/ 4,
             clipBias: 0.004,
             multisample: 0.05,
             });
@@ -124,7 +124,8 @@ export default class World {
             this.dimPlane.rotateX(-Math.PI / 2);
             this.dimPlane.position.y = guiParams.reflection.position; // slightly above the reflector
             this.scene.add(this.dimPlane);
-
+            this.reflector.userData.reflector = true;
+            this.reflector.layers.set(0);
             this.reflector.rotateX(-Math.PI / 2);
             this.reflector.position.y =  -10; // Adjust this value as needed
             this.scene.add(this.reflector);  

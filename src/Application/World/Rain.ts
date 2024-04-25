@@ -44,6 +44,7 @@ export default class Rain {
         });
 
         this.model = new THREE.Points(geometry, material);
+        this.model.layers.set(5); // 
         this.scene.add(this.model);
     }
 

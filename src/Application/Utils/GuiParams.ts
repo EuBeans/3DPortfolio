@@ -6,7 +6,7 @@ export const guiParams = {
         exposure: 1,
     },
     reflection: {
-        opacity: 0.758,
+        opacity: 0.8,
         position: 30,  // Updated from 19.2
         roughness: 1,
     },
