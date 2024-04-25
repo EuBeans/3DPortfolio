@@ -16,9 +16,10 @@ import { Reflector } from 'three/examples/jsm/objects/Reflector';
 import { guiParams } from '../Utils/GuiParams';
 import BillBoardScreen from './BillBoardScreen';
 import Rain from './Rain';
-import RainEffect from './RainEffect';
-import GarageDoor from './GarageDoor';
+import AnimatedProps from './AnimatedProps';
 import UIEventBus from '../UI/EventBus';
+import HoloHelpSreen from './HoloHelpSreen';
+import Hologram from './Hologram';
 
 const FLOOR_SIZE = 90000
 export default class World {
@@ -40,8 +41,9 @@ export default class World {
     decors: Decors
     reflector: Reflector
     rain: Rain;
-    rainEffect: RainEffect;
-    garageDoor: GarageDoor
+    animatedProps: AnimatedProps
+    holographicHelper: HoloHelpSreen
+    hologram: Hologram
 
     dimPlane: THREE.Mesh
     BillBoardScreen: BillBoardScreen[]
@@ -59,11 +61,12 @@ export default class World {
             this.ledSigns = new LEDSigns();
             this.cablesAndPipes = new CablesAndPipes();
             this.decors = new Decors();
-            this.garageDoor = new GarageDoor();
+            this.animatedProps = new AnimatedProps();
             this.rain = new Rain();
-            //this.rainEffect = new RainEffect();
-            
-            this.addBillBoardScreen()
+            this.holographicHelper = new HoloHelpSreen();
+            this.hologram = new Hologram();
+
+           
   
             this.computerSetup = new ComputerSetup();
             this.monitorScreen = new MonitorScreen();
@@ -71,9 +74,11 @@ export default class World {
             this.audioManager = new AudioManager();
             //this.cvPaper = new CVPaper();
             //this.hitbox = new Hitboxes();
+             
+            this.addBillBoardScreen()
             this.addReflectiveFloor();
             this.addSpotLight();
-            //this.addHemisphereLighting();
+            this.addHemisphereLighting();
         });
     }
 
@@ -128,7 +133,7 @@ export default class World {
             this.scene.add(this.dimPlane);
 
             this.reflector.rotateX(-Math.PI / 2);
-            this.reflector.position.y =  -20; // Adjust this value as needed
+            this.reflector.position.y =  -10; // Adjust this value as needed
             this.scene.add(this.reflector);  
 
     }
@@ -183,8 +188,9 @@ export default class World {
         if (this.BillBoardScreen) this.BillBoardScreen.forEach(screen => screen.update());
         if(this.dimPlane) this.updateReflection();
         if(this.rain) this.rain.update();
-        if(this.rainEffect) this.rainEffect.update();
-        if(this.garageDoor) this.garageDoor.update();
+        if(this.animatedProps) this.animatedProps.update();
+        if(this.holographicHelper) this.holographicHelper.update();
+        if(this.hologram) this.hologram.update();
 
     }
 }

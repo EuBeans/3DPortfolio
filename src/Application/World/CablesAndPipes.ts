@@ -43,23 +43,23 @@ export default class CablesAndPipes {
             900
         );
 
-    bloomObjects.forEach((objectName) => {
-        if (objectName.includes('PowerCableBig')) {
-            for (let i = 1; i <= 4; i++) {
-                const object = this.bakedModel.getModel().getObjectByName(objectName.replace('X', i.toString()));
-                if (object) {
-                    object.layers.enable(BLOOM_SCENE_LAYER);
+        bloomObjects.forEach((objectName) => {
+            if (objectName.includes('PowerCableBig')) {
+                for (let i = 1; i <= 5; i++) {
+                    const object = this.bakedModel.getModel().getObjectByName(objectName.replace('X', i.toString()));
+                    if (object) {
+                        object.layers.enable(BLOOM_SCENE_LAYER);
+                    }
+                }
+            } else if (objectName.includes('PowerCableSmall')) {
+                for (let i = 1; i <= 7; i++) {
+                    const object = this.bakedModel.getModel().getObjectByName(objectName.replace('XLights', i.toString() + 'Lights'));
+                    if (object) {
+                        object.layers.enable(BLOOM_SCENE_LAYER);
+                    }
                 }
             }
-        } else if (objectName.includes('PowerCableSmall')) {
-            for (let i = 1; i <= 7; i++) {
-                const object = this.bakedModel.getModel().getObjectByName(objectName.replace('XLights', i.toString() + 'Lights'));
-                if (object) {
-                    object.layers.enable(BLOOM_SCENE_LAYER);
-                }
-            }
-        }
-    });
+        });
 
         
     }

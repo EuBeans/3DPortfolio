@@ -103,14 +103,14 @@ export default class Camera extends EventEmitter {
                 (this.currentKeyframe === CameraKey.IDLE ||
                 this.targetKeyframe === CameraKey.IDLE) && this.garageDoneAnimating
             ) {
-                this.transitionAlongPath(this.computerCameraPath, 4000,CameraKey.MONITOR); // Adjust duration as needed
+                this.transitionAlongPath(this.computerCameraPath, 2000,CameraKey.MONITOR); // Adjust duration as needed
                 
             } else if (
                 (this.currentKeyframe === CameraKey.MONITOR ||
                 this.targetKeyframe === CameraKey.MONITOR) && this.garageDoneAnimating
             ) {
 
-                this.transitionAlongPath(this.idleCameraPath, 3000,CameraKey.IDLE); // Adjust duration as needed
+                this.transitionAlongPath(this.idleCameraPath, 2000,CameraKey.IDLE); // Adjust duration as needed
                 //this.garageDoor.playCloseAnimation();
                 UIEventBus.dispatch('transitionStarted',undefined);
             }
@@ -164,7 +164,7 @@ export default class Camera extends EventEmitter {
                     currentIndex++;
                     if (currentIndex === path.length - 1) { // Check if it's the last index
 
-                        this.transition(key,5000,TWEEN.Easing.Exponential.Out); // Transition to the monitor keyframe
+                        this.transition(key,3000,TWEEN.Easing.Exponential.Out); // Transition to the monitor keyframe
                     } else {
                         moveToNextPoint();
                     }
@@ -292,7 +292,7 @@ export default class Camera extends EventEmitter {
             
         );
         this.orbitControls.dampingFactor = 0.05;
-        this.orbitControls.maxPolarAngle = Math.PI / 2.2;
+        this.orbitControls.maxPolarAngle = Math.PI / 2;
         this.orbitControls.minDistance = 22000;
         this.orbitControls.maxDistance = 50000;
 

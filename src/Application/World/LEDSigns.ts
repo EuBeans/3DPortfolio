@@ -43,22 +43,31 @@ export default class LEDSigns {
         bloomObjects.forEach((objectName) => {
             const object = this.bakedModel.getModel().getObjectByName(objectName);
             if (object) {
-                object.layers.enable(BLOOM_SCENE_LAYER);
-                if (objectName === "greenNeons") {
+                // Corrected typo in "GreenNeons" to match the case in the bloomObjects array
+                if (objectName === "greenNeons" || objectName === "GreenNeon") { // Corrected "GreenNeons" to "GreenNeon"
                     object.traverse((child) => {
-                        if (child instanceof THREE.Object3D) {
+                        if (child instanceof THREE.Mesh) {
                             child.layers.enable(BLOOM_SCENE_LAYER);
+                            child.material.color.setHex(0x2DF447);
                         }
                     });
+                // Corrected typo in "PurperNeon" to "PurpleNeon"
+                } else if (objectName === "PurpleNeon") { // Removed the incorrect "PurperNeon" check
+                    if (object instanceof THREE.Mesh) {
+                        object.layers.enable(BLOOM_SCENE_LAYER);
+                        object.material.color.setHex(0xBB56E7);
+                    }
+                } else {
+                    object.layers.enable(BLOOM_SCENE_LAYER);
                 }
             }
         });
     }
 
     addLighSourceToLEDS(){
-        //#ce0b5e
+        //0xce0b5e
         //create folder for LEDBarLight
-        const LEDBarLight = new THREE.SpotLight(0xcb0e0e, guiParams.ledLightBar.intensity, guiParams.ledLightBar.distance, guiParams.ledLightBar.angle, guiParams.ledLightBar.penumbra, guiParams.ledLightBar.decay);
+        const LEDBarLight = new THREE.SpotLight(0x42e3f5, guiParams.ledLightBar.intensity, guiParams.ledLightBar.distance, guiParams.ledLightBar.angle, guiParams.ledLightBar.penumbra, guiParams.ledLightBar.decay);
         LEDBarLight.position.set(guiParams.ledLightBar.x, guiParams.ledLightBar.y, guiParams.ledLightBar.z);
         this.scene.add(LEDBarLight);
 

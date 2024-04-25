@@ -15,10 +15,6 @@ import screenFrag from './Shaders/screen/fragment.glsl';
 import Time from './Utils/Time';
 import Debug from './Utils/Debug';
 import { guiParams } from './Utils/GuiParams';
-// @ts-ignore
-import vertexShader from './Shaders/rainEffect/vertex.glsl';
-// @ts-ignore
-import fragmentShader from './Shaders/rainEffect/fragment.glsl';
 
 const BLOOM_SCENE = 1
 const bloomLayer = new THREE.Layers();

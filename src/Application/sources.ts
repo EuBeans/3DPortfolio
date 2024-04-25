@@ -87,19 +87,44 @@ const sources: Resource[] = [
         path: 'models/Decors/Decors.jpg',
     },
     {
-        name: 'garageDoorModel',
+        name: 'decors2Model',
         type: 'gltfModel',
-        path: 'models/GarageDoor/GarageDoor.glb',
+        path: 'models/Decors2/Decors2.glb',
     },
     {
-        name: 'garageDoorTexture',
+        name: 'decors2Texture',
         type: 'texture',
-        path: 'models/GarageDoor/GarageDoor.jpg',
+        path: 'models/Decors2/Decors2.jpg',
     },
     {
-        name: 'garageDoorRoughnessTexture',
+        name: 'decors2RoughnessTexture',
         type: 'texture',
-        path: 'models/GarageDoor/GarageDoorRoughness.jpg',
+        path: 'models/Decors2/Decors2Roughness.jpg',
+    },
+    {
+        name: 'hologramHelperModel',
+        type: 'gltfModel',
+        path: 'models/Decors2/HologramHelper.glb',
+    },
+    {
+        name: 'hologramModel',
+        type: 'gltfModel',
+        path: 'models/Decors2/Hologram.glb',
+    },
+    {
+        name: 'animatedPropsModel',
+        type: 'gltfModel',
+        path: 'models/AnimatedProps/AnimatedProps.glb',
+    },
+    {
+        name: 'animatedPropsTexture',
+        type: 'texture',
+        path: 'models/AnimatedProps/AnimatedProps.jpg',
+    },
+    {
+        name: 'animatedPropsRoughnessTexture',
+        type: 'texture',
+        path: 'models/AnimatedProps/AnimatedPropsRoughness.jpg',
     },
     {
         name: 'decorsRoughnessTexture',

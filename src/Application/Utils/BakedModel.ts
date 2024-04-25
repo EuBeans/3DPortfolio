@@ -22,7 +22,10 @@ export default class BakedModel {
             // Use MeshStandardMaterial to support roughness maps
             this.material = new THREE.MeshStandardMaterial({
                 map: this.texture,
-                roughnessMap: this.roughnessTexture,
+                //roughnessMap: this.roughnessTexture,
+                roughness: 1,
+                metalness: 0,
+
                 // Set roughness if you want a default value or control it through the texture
             });
         } else if (this.texture) {

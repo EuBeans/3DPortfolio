@@ -23,7 +23,7 @@ export default class Rain {
     }
 
     setModel() {
-        const raindropCount = 10000;
+        const raindropCount = 5000;
         const positions = new Float32Array(raindropCount * 3);
         for (let i = 0; i < raindropCount; i++) {
             positions[i * 3] = Math.random() * 100000 - 50000; // x-axis

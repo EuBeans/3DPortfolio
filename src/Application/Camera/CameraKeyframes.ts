@@ -23,8 +23,8 @@ export class CameraKeyframeInstance {
 const keys: { [key in CameraKey]: CameraKeyframe } = {
     //guiParams use t
     idle: {            
-        position: new THREE.Vector3(30000, 16000, -21120),
-        focalPoint: new THREE.Vector3(0, 0, 0),
+        position: new THREE.Vector3(guiParams.camera.orbitalPosition_x, guiParams.camera.orbitalPosition_y, guiParams.camera.orbitalPosition_z),
+        focalPoint: new THREE.Vector3(guiParams.camera.orbitalFocalPoint_x, guiParams.camera.orbitalFocalPoint_y, guiParams.camera.orbitalFocalPoint_z),
     },
 
     monitor: {
