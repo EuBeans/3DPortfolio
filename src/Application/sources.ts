@@ -102,11 +102,6 @@ const sources: Resource[] = [
         path: 'models/Decors2/Decors2Roughness.jpg',
     },
     {
-        name: 'hologramHelperModel',
-        type: 'gltfModel',
-        path: 'models/Decors2/HologramHelper.glb',
-    },
-    {
         name: 'hologramModel',
         type: 'gltfModel',
         path: 'models/Decors2/Hologram.glb',

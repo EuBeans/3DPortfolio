@@ -15,7 +15,6 @@ export default class Hologram {
         this.loader = new OBJLoader();
         this.scene = this.application.scene;
         this.loadModel();
-
         UIEventBus.on('loadingScreenDone', () => {
             this.animate();
         });
@@ -26,8 +25,7 @@ export default class Hologram {
         this.loader.load('models/Decors2/Hologram.obj', (object) => {
             const combinedPositions = this.combineBuffer(object, 'position');
             
-            console.log(combinedPositions);
-            this.createMesh(combinedPositions, 900, 0, 0, 0, 0xFFFFFF);
+            this.createMesh(combinedPositions, 900, 0, 0, -50, 0xFFFFFF);
             
         }, undefined, (error) => {
             console.error('An error happened while loading the model:', error);
@@ -66,8 +64,8 @@ export default class Hologram {
         // Randomize initial positions
         const initialArray = new Float32Array(initialPositions.array);
         for (let i = 0; i < initialArray.length; i += 3) {
-            initialArray[i] = -1; // Set x to middle
-            initialArray[i + 1] = 12.5; // Set y to middle
+            initialArray[i] = 0; // Set x to middle
+            initialArray[i + 1] = 12.1; // Set y to middle
             initialArray[i + 2] = 0; // Set z to middle
         }
         pointsGeometry.setAttribute('position', new THREE.BufferAttribute(initialArray, 3));
@@ -95,10 +93,8 @@ export default class Hologram {
     }
     render() {
         if (!this.mesh) return;  
-    
-        let delta = this.application.clock.getDelta(); // Assuming a fixed delta for simplicity
-        this.mesh.rotation.y += -0.5 * delta;
-    
+        this.mesh.rotation.y += Math.PI / 300;
+
         const positions = this.mesh.geometry.attributes.position;
         const initialPositions = this.mesh.geometry.attributes.initialPosition;
         const count = positions.count;
@@ -133,8 +129,10 @@ export default class Hologram {
         if (this.mesh.userData.verticesUp >= count) {
             return; // Stop the animation or remove this line to keep other animations (like rotation) running
         }
-    
+        
+        
         positions.needsUpdate = true;
+        
     }
     update() {
     }

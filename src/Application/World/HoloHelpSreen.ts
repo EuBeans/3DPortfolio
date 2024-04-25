@@ -19,7 +19,7 @@ export default class HoloHelpScreen {
         this.holographicMaterial = new HolographicMaterial({
             fresnelOpacity: 0.2,
             fresnelAmount: 0.1,
-            scanlineSize: 10,
+            scanlineSize: 7,
             hologramBrightness: 1,
             signalSpeed: 2,
             enableBlinking: true,
@@ -27,7 +27,8 @@ export default class HoloHelpScreen {
             hologramOpacity: 0.7,
             blendMode: THREE.NormalBlending,
             side: THREE.DoubleSide,
-            depthTest: true
+            depthTest: true,
+            clock: this.application.clock
         });
         this.loadModel();
         this.startAnimationLoop();
@@ -37,18 +38,14 @@ export default class HoloHelpScreen {
     loadModel() {
         const holographicMaterial = this.holographicMaterial;
         this.loader.load('models/Decors2/HologramHelper.glb', (gltf) => {
-            gltf.scene.traverse((child: THREE.Object3D) => {
+            gltf.scene.traverse((child) => {
                 if ((child as THREE.Mesh).isMesh) {
                     (child as THREE.Mesh).material = holographicMaterial;
-
                 }
-
             });
-
             // Adjust the model position and scale as needed
             gltf.scene.position.set(0, 0, 0);
             gltf.scene.scale.set(900, 900, 900);
-
             this.scene.add(gltf.scene);
         }, undefined, (error) => {
             console.error('An error happened while loading the model:', error);
@@ -66,6 +63,6 @@ export default class HoloHelpScreen {
 
 
     update() {
-
+        this.holographicMaterial.update();
     }
 }

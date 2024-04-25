@@ -14,6 +14,7 @@ interface HolographicMaterialParameters {
   blendMode?: Blending;
   side?: Side;
   depthTest?: boolean;
+  clock?: Clock;
 }
 
 class HolographicMaterial extends ShaderMaterial {
@@ -21,8 +22,9 @@ class HolographicMaterial extends ShaderMaterial {
 
   constructor(parameters: HolographicMaterialParameters = {}) {
     super();
-
+    this.clock = parameters.clock || new Clock();
     this.vertexShader = /* glsl */`
+
     #define STANDARD
     varying vec3 vViewPosition;
     #ifdef USE_TRANSMISSION
@@ -146,7 +148,6 @@ class HolographicMaterial extends ShaderMaterial {
         hologramOpacity: new Uniform(parameters.hologramOpacity !== undefined ? parameters.hologramOpacity : 1.0),
       };
   
-      this.clock = new Clock();
       this.setValues(parameters);
       this.depthTest = parameters.depthTest !== undefined ? parameters.depthTest : true;
       this.blending = parameters.blendMode !== undefined ? parameters.blendMode : AdditiveBlending;

@@ -42,7 +42,7 @@ export default class World {
     reflector: Reflector
     rain: Rain;
     animatedProps: AnimatedProps
-    holographicHelper: HoloHelpSreen
+    HoloHelpSreen: HoloHelpSreen
     hologram: Hologram
 
     dimPlane: THREE.Mesh
@@ -63,7 +63,7 @@ export default class World {
             this.decors = new Decors();
             this.animatedProps = new AnimatedProps();
             this.rain = new Rain();
-            this.holographicHelper = new HoloHelpSreen();
+            this.HoloHelpSreen = new HoloHelpSreen();
             this.hologram = new Hologram();
 
            
@@ -74,7 +74,10 @@ export default class World {
             this.audioManager = new AudioManager();
             //this.cvPaper = new CVPaper();
             //this.hitbox = new Hitboxes();
-             
+            console.log("Scene graph:", this.scene);
+            this.scene.traverse((object) => {
+              console.log(object);
+            });
             this.addBillBoardScreen()
             this.addReflectiveFloor();
             this.addSpotLight();
@@ -189,7 +192,7 @@ export default class World {
         if(this.dimPlane) this.updateReflection();
         if(this.rain) this.rain.update();
         if(this.animatedProps) this.animatedProps.update();
-        if(this.holographicHelper) this.holographicHelper.update();
+        if(this.HoloHelpSreen) this.HoloHelpSreen.update();
         if(this.hologram) this.hologram.update();
 
     }
