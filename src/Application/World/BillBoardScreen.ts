@@ -259,7 +259,17 @@ export default class BillBoardScreen extends EventEmitter {
             this.videoTextures[videoId] = new THREE.VideoTexture(video);
             video.playbackRate = 0.5; // Set playback speed to half the normal speed
             video.muted = true; // Ensure the video is muted to comply with autoplay policies
-            video.play().catch(e => console.error("Error playing video:", e));
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                    console.error("Error playing video:", e);
+                  
+                    video.play().catch(e => console.error("Retry playing video failed:", e));
+                    
+                });
+            }
+
             this.videoTextures[videoId].needsUpdate = true;
 
             if (videoId === 'video-3' || videoId === 'video-4') {

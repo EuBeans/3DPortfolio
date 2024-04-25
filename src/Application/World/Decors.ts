@@ -73,27 +73,32 @@ export default class Decords {
         hologramLightSource.position.set(guiParams.hologramLightSource.x, guiParams.hologramLightSource.y, guiParams.hologramLightSource.z);
         this.scene.add(hologramLightSource);
 
-        //create folder for hologramLightSource
-        const hologramLightSourceFolder = this.application.debug.getGUI().addFolder('HologramLightSource');
-        hologramLightSourceFolder.add(hologramLightSource, 'intensity', 0, 30).name('Hologram Light Source Intensity').setValue(guiParams.hologramLightSource.intensity);
-        hologramLightSourceFolder.add(hologramLightSource.position, 'x', -50000, 50000).name('Hologram Light Source X').setValue(guiParams.hologramLightSource.x);
-        hologramLightSourceFolder.add(hologramLightSource.position, 'y', 0, 20000).name('Hologram Light Source Y').setValue(guiParams.hologramLightSource.y);
-        hologramLightSourceFolder.add(hologramLightSource.position, 'z', -50000, 50000).name('Hologram Light Source Z').setValue(guiParams.hologramLightSource.z);
-        hologramLightSourceFolder.add(hologramLightSource, 'distance', 0, 70000).name('Hologram Light Source Distance').setValue(guiParams.hologramLightSource.distance);
-        hologramLightSourceFolder.add(hologramLightSource, 'decay', 0, 200).name('Hologram Light Source Decay').setValue(guiParams.hologramLightSource.decay);
-    
         const hologramLightSource2 = new THREE.PointLight(0x08ceff, 10, 1000, 1);
         hologramLightSource2.position.set(0, 1000, 0);
         this.scene.add(hologramLightSource2);
+        
+        if(this.application.debug.getGUI()){
+            //create folder for hologramLightSource
+            const hologramLightSourceFolder = this.application.debug.getGUI().addFolder('HologramLightSource');
+            hologramLightSourceFolder.add(hologramLightSource, 'intensity', 0, 30).name('Hologram Light Source Intensity').setValue(guiParams.hologramLightSource.intensity);
+            hologramLightSourceFolder.add(hologramLightSource.position, 'x', -50000, 50000).name('Hologram Light Source X').setValue(guiParams.hologramLightSource.x);
+            hologramLightSourceFolder.add(hologramLightSource.position, 'y', 0, 20000).name('Hologram Light Source Y').setValue(guiParams.hologramLightSource.y);
+            hologramLightSourceFolder.add(hologramLightSource.position, 'z', -50000, 50000).name('Hologram Light Source Z').setValue(guiParams.hologramLightSource.z);
+            hologramLightSourceFolder.add(hologramLightSource, 'distance', 0, 70000).name('Hologram Light Source Distance').setValue(guiParams.hologramLightSource.distance);
+            hologramLightSourceFolder.add(hologramLightSource, 'decay', 0, 200).name('Hologram Light Source Decay').setValue(guiParams.hologramLightSource.decay);
+            // create folder for hologramLightSource2
+            const hologramLightSource2Folder = this.application.debug.getGUI().addFolder('HologramLightSource2');
+            hologramLightSource2Folder.add(hologramLightSource2, 'intensity', 0, 30).name('Hologram  2 Intensity').setValue(guiParams.hologramLightSource2.intensity);
+            hologramLightSource2Folder.add(hologramLightSource2.position, 'x', -20000, 20000).name('Hologram 2 X').setValue(guiParams.hologramLightSource2.x);
+            hologramLightSource2Folder.add(hologramLightSource2.position, 'y', 0, 20000).name('Hologram 2 Y').setValue(guiParams.hologramLightSource2.y);
+            hologramLightSource2Folder.add(hologramLightSource2.position, 'z', -20000, 20000).name('Hologram 2 Z').setValue(guiParams.hologramLightSource2.z);
+            hologramLightSource2Folder.add(hologramLightSource2, 'distance', 0, 50000).name('Hologram 2 Distance').setValue(guiParams.hologramLightSource2.distance);
+            hologramLightSource2Folder.add(hologramLightSource2, 'decay', 0, 200).name('Hologram 2 Decay').setValue(guiParams.hologramLightSource2.decay);
+        }
+        
 
-        // create folder for hologramLightSource2
-        const hologramLightSource2Folder = this.application.debug.getGUI().addFolder('HologramLightSource2');
-        hologramLightSource2Folder.add(hologramLightSource2, 'intensity', 0, 30).name('Hologram  2 Intensity').setValue(guiParams.hologramLightSource2.intensity);
-        hologramLightSource2Folder.add(hologramLightSource2.position, 'x', -20000, 20000).name('Hologram 2 X').setValue(guiParams.hologramLightSource2.x);
-        hologramLightSource2Folder.add(hologramLightSource2.position, 'y', 0, 20000).name('Hologram 2 Y').setValue(guiParams.hologramLightSource2.y);
-        hologramLightSource2Folder.add(hologramLightSource2.position, 'z', -20000, 20000).name('Hologram 2 Z').setValue(guiParams.hologramLightSource2.z);
-        hologramLightSource2Folder.add(hologramLightSource2, 'distance', 0, 50000).name('Hologram 2 Distance').setValue(guiParams.hologramLightSource2.distance);
-        hologramLightSource2Folder.add(hologramLightSource2, 'decay', 0, 200).name('Hologram 2 Decay').setValue(guiParams.hologramLightSource2.decay);
+
+       
 
         
     

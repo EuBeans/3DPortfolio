@@ -22,22 +22,25 @@ export default class Debug {
     setupGUI() {
         if (!this.active) return;
 
-        // Bloom Effect Folder
-        const bloomFolder = this.ui.addFolder('Bloom Effect');
-        bloomFolder.add(guiParams.bloom, 'threshold', 0, 1).name('Threshold');
-        bloomFolder.add(guiParams.bloom, 'strength', 0, 10).name('Strength');
-        bloomFolder.add(guiParams.bloom, 'radius', 0, 2).name('Radius');
-        bloomFolder.add(guiParams.bloom, 'exposure', 0, 2).name('Exposure');
-        bloomFolder.open();
+        
+        if(this.ui){
+            // Bloom Effect Folder
+            const bloomFolder = this.ui.addFolder('Bloom Effect');
+            bloomFolder.add(guiParams.bloom, 'threshold', 0, 1).name('Threshold');
+            bloomFolder.add(guiParams.bloom, 'strength', 0, 10).name('Strength');
+            bloomFolder.add(guiParams.bloom, 'radius', 0, 2).name('Radius');
+            bloomFolder.add(guiParams.bloom, 'exposure', 0, 2).name('Exposure');
+            bloomFolder.open();
 
 
-  
-        //reflection folder
-        const reflectionFolder = this.ui.addFolder('Reflection');
-        reflectionFolder.add(guiParams.reflection, 'opacity', 0, 1).name('Opacity');
-        reflectionFolder.add(guiParams.reflection, 'position', 0, 200).name('Position');
-        reflectionFolder.add(guiParams.reflection, 'roughness', 0, 1).name('Roughness');
-        reflectionFolder.open();
+    
+            //reflection folder
+            const reflectionFolder = this.ui.addFolder('Reflection');
+            reflectionFolder.add(guiParams.reflection, 'opacity', 0, 1).name('Opacity');
+            reflectionFolder.add(guiParams.reflection, 'position', 0, 200).name('Position');
+            reflectionFolder.add(guiParams.reflection, 'roughness', 0, 1).name('Roughness');
+            reflectionFolder.open();
+        }
 
 
     }

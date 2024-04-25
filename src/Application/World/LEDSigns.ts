@@ -71,17 +71,20 @@ export default class LEDSigns {
         LEDBarLight.position.set(guiParams.ledLightBar.x, guiParams.ledLightBar.y, guiParams.ledLightBar.z);
         this.scene.add(LEDBarLight);
 
-        //create folder for LEDBarLight
-        const LEDBarLightFolder = this.application.debug.getGUI().addFolder('LEDBarLight');
-        LEDBarLightFolder.add(LEDBarLight, 'intensity', 0, 30).name('LED Bar Light Intensity').setValue(guiParams.ledLightBar.intensity);
-        LEDBarLightFolder.add(LEDBarLight.position, 'x', -50000, 50000).name('LED Bar Light X').setValue(guiParams.ledLightBar.x);
-        LEDBarLightFolder.add(LEDBarLight.position, 'y', 0, 20000).name('LED Bar Light Y').setValue(guiParams.ledLightBar.y);
-        LEDBarLightFolder.add(LEDBarLight.position, 'z', -50000, 50000).name('LED Bar Light Z').setValue(guiParams.ledLightBar.z);
-        LEDBarLightFolder.add(LEDBarLight, 'distance', 0, 70000).name('LED Bar Light Distance').setValue(guiParams.ledLightBar.distance);
-        LEDBarLightFolder.add(LEDBarLight, 'decay', 0, 200).name('LED Bar Light Decay').setValue(guiParams.ledLightBar.decay);
-        LEDBarLightFolder.add(LEDBarLight, 'angle', 0, Math.PI).name('LED Bar Light Angle').setValue(guiParams.ledLightBar.angle);
-        LEDBarLightFolder.add(LEDBarLight, 'penumbra', 0, 1).name('LED Bar Light Penumbra').setValue(guiParams.ledLightBar.penumbra);
+        if(this.application.debug.getGUI()){
+                //create folder for LEDBarLight
+            const LEDBarLightFolder = this.application.debug.getGUI().addFolder('LEDBarLight');
+            LEDBarLightFolder.add(LEDBarLight, 'intensity', 0, 30).name('LED Bar Light Intensity').setValue(guiParams.ledLightBar.intensity);
+            LEDBarLightFolder.add(LEDBarLight.position, 'x', -50000, 50000).name('LED Bar Light X').setValue(guiParams.ledLightBar.x);
+            LEDBarLightFolder.add(LEDBarLight.position, 'y', 0, 20000).name('LED Bar Light Y').setValue(guiParams.ledLightBar.y);
+            LEDBarLightFolder.add(LEDBarLight.position, 'z', -50000, 50000).name('LED Bar Light Z').setValue(guiParams.ledLightBar.z);
+            LEDBarLightFolder.add(LEDBarLight, 'distance', 0, 70000).name('LED Bar Light Distance').setValue(guiParams.ledLightBar.distance);
+            LEDBarLightFolder.add(LEDBarLight, 'decay', 0, 200).name('LED Bar Light Decay').setValue(guiParams.ledLightBar.decay);
+            LEDBarLightFolder.add(LEDBarLight, 'angle', 0, Math.PI).name('LED Bar Light Angle').setValue(guiParams.ledLightBar.angle);
+            LEDBarLightFolder.add(LEDBarLight, 'penumbra', 0, 1).name('LED Bar Light Penumbra').setValue(guiParams.ledLightBar.penumbra);
+        }
     }
+       
 
 
     setModel() {

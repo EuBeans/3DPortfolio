@@ -134,7 +134,9 @@ export default class World {
     addHemisphereLighting() {
         const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, guiParams.hemisphereLight.intensity);
         this.scene.add(hemisphereLight);
-        this.application.debug.getGUI().add(hemisphereLight, 'intensity', 0, 10).name('Hemisphere Light Intensity').setValue(guiParams.hemisphereLight.intensity);  
+        if(this.application.debug.getGUI()){
+            this.application.debug.getGUI().add(hemisphereLight, 'intensity', 0, 10).name('Hemisphere Light Intensity').setValue(guiParams.hemisphereLight.intensity);  
+        }
     }
 
     addSpotLight() {
@@ -152,16 +154,19 @@ export default class World {
             spotlight.position.set(config.params.x, config.params.y, config.params.z);
             this.scene.add(spotlight);
 
-            // Create GUI folder for the spotlight
-            const spotlightFolder = this.application.debug.getGUI().addFolder(config.folderName);
-            spotlightFolder.add(spotlight, 'intensity', 0, 30).name(`${config.folderName} Intensity`).setValue(config.params.intensity);
-            spotlightFolder.add(spotlight.position, 'x', -50000, 50000).name(`${config.folderName} X`).setValue(config.params.x);
-            spotlightFolder.add(spotlight.position, 'y', 0, 20000).name(`${config.folderName} Y`).setValue(config.params.y);
-            spotlightFolder.add(spotlight.position, 'z', -50000, 50000).name(`${config.folderName} Z`).setValue(config.params.z);
-            spotlightFolder.add(spotlight, 'distance', 0, 70000).name(`${config.folderName} Distance`).setValue(config.params.distance);
-            spotlightFolder.add(spotlight, 'decay', 0, 200).name(`${config.folderName} Decay`).setValue(config.params.decay);
-            spotlightFolder.add(spotlight, 'angle', 0, Math.PI).name(`${config.folderName} Angle`).setValue(config.params.angle);
-            spotlightFolder.add(spotlight, 'penumbra', 0, 1).name(`${config.folderName} Penumbra`).setValue(config.params.penumbra);
+            if(this.application.debug.getGUI()){
+                    // Create GUI folder for the spotlight
+                const spotlightFolder = this.application.debug.getGUI().addFolder(config.folderName);
+                spotlightFolder.add(spotlight, 'intensity', 0, 30).name(`${config.folderName} Intensity`).setValue(config.params.intensity);
+                spotlightFolder.add(spotlight.position, 'x', -50000, 50000).name(`${config.folderName} X`).setValue(config.params.x);
+                spotlightFolder.add(spotlight.position, 'y', 0, 20000).name(`${config.folderName} Y`).setValue(config.params.y);
+                spotlightFolder.add(spotlight.position, 'z', -50000, 50000).name(`${config.folderName} Z`).setValue(config.params.z);
+                spotlightFolder.add(spotlight, 'distance', 0, 70000).name(`${config.folderName} Distance`).setValue(config.params.distance);
+                spotlightFolder.add(spotlight, 'decay', 0, 200).name(`${config.folderName} Decay`).setValue(config.params.decay);
+                spotlightFolder.add(spotlight, 'angle', 0, Math.PI).name(`${config.folderName} Angle`).setValue(config.params.angle);
+                spotlightFolder.add(spotlight, 'penumbra', 0, 1).name(`${config.folderName} Penumbra`).setValue(config.params.penumbra);
+            }
+            
         });
     }
 
