@@ -5,8 +5,7 @@ import Resources from '../Utils/Resources';
 const BLOOM_SCENE_LAYER = 1;
 
 const bloomObjects: string[]= [
-    'PowerCableBigXLights',
-    'PowerCableSmallXLights'
+
 ]
 
 export default class CablesAndPipes {
