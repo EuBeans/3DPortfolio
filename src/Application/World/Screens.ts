@@ -26,7 +26,7 @@ export default class Screens {
         this.bakedModel = new BakedModel(
             this.resources.items.gltfModel.screensModel,
             this.resources.items.texture.screensTexture,
-            this.resources.items.texture.screensRoughnessTexture,
+            undefined,
             900
         );
         bloomObjects.forEach((objectName) => {

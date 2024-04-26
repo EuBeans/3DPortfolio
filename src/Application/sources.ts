@@ -33,75 +33,176 @@ const sources: Resource[] = [
         path: 'models/CVPaper/CVPaper.jpg',
     },
     {
-        name: 'shopWallsModel',
+        name: 'wallsModel',
         type: 'gltfModel',
-        path: 'models/ShopWalls/ShopWalls.glb',
+        path: 'models/ShopWalls/Walls.glb',
     },
     {
-        name: 'shopWallsTexture',
+        name: 'wallsTexture',
         type: 'texture',
-        path: 'models/ShopWalls/ShopWalls.jpg',
+        path: 'models/ShopWalls/Walls.jpg',
     },
     {
-        name: 'shopWallsRoughnessTexture',
-        type: 'texture',
-        path: 'models/ShopWalls/ShopWallsRoughness.jpg',
-    },
-    
-    {
-        name: 'ledSignsModel',
+        name: 'barModel',
         type: 'gltfModel',
-        path: 'models/LEDSigns/LEDSigns.glb',
+        path: 'models/ShopWalls/Bar.glb',
     },
     {
-        name: 'ledSignsTexture',
+        name: 'barTexture',
         type: 'texture',
-        path: 'models/LEDSigns/LEDSigns.jpg',
+        path: 'models/ShopWalls/Bar.jpg',
     },
     {
-        name: 'ledSignsRoughnessTexture',
-        type: 'texture',
-        path: 'models/LEDSigns/LEDSignsRoughness.jpg',
-    },
-    {
-        name: 'cablesAndPipesModel',
+        name: 'floorModel',
         type: 'gltfModel',
-        path: 'models/CablesAndPipes/CablesAndPipes.glb',
+        path: 'models/ShopWalls/Floor.glb',
     },
     {
-        name: 'cablesAndPipesTexture',
+        name: 'floorTexture',
         type: 'texture',
-        path: 'models/CablesAndPipes/CablesAndPipes.jpg',
+        path: 'models/ShopWalls/Floor.jpg',
     },
     {
-        name: 'cablesAndPipesRoughnessTexture',
-        type: 'texture',
-        path: 'models/CablesAndPipes/CablesAndPipesRoughness.jpg',
-    },
-    {
-        name: 'decorsModel',
+        name: 'roofExtensionModel',
         type: 'gltfModel',
-        path: 'models/Decors/Decors.glb',
+        path: 'models/ShopWalls/RoofExtension.glb',
     },
     {
-        name: 'decorsTexture',
+        name: 'roofExtensionTexture',
         type: 'texture',
-        path: 'models/Decors/Decors.jpg',
+        path: 'models/ShopWalls/RoofExtension.jpg',
     },
+    {
+        name: 'aboutMeModel',
+        type: 'gltfModel',
+        path: 'models/ShopWalls/AboutMe.glb',
+    },
+    {
+        name: 'aboutMeTexture',
+        type: 'texture',
+        path: 'models/ShopWalls/AboutMe.jpg',
+    },
+    {
+        name: 'ledSigns1Model',
+        type: 'gltfModel',
+        path: 'models/LEDSigns/LEDSigns_1.glb',
+    },
+    {
+        name: 'ledSigns1Texture',
+        type: 'texture',
+        path: 'models/LEDSigns/LEDSigns_1.jpg',
+    },
+    {
+        name: 'ledSigns2Model',
+        type: 'gltfModel',
+        path: 'models/LEDSigns/LEDSigns_2.glb',
+    },
+    {
+        name: 'ledSigns2Texture',
+        type: 'texture',
+        path: 'models/LEDSigns/LEDSigns_2.jpg',
+    },
+
+    {
+        name: 'cablesModel',
+        type: 'gltfModel',
+        path: 'models/CablesAndPipes/Cables.glb',
+    },
+    {
+        name: 'cablesTexture',
+        type: 'texture',
+        path: 'models/CablesAndPipes/Cables.jpg',
+    },
+    {
+        name: 'bigCables1Model',
+        type: 'gltfModel',
+        path: 'models/CablesAndPipes/BigCables_1.glb',
+    },
+    {
+        name: 'bigCables1Texture',
+        type: 'texture',
+        path: 'models/CablesAndPipes/BigCables_1.jpg',
+    },
+    {
+        name: 'bigCables2Model',
+        type: 'gltfModel',
+        path: 'models/CablesAndPipes/BigCables_2.glb',
+    },
+    {
+        name: 'bigCables2Texture',
+        type: 'texture',
+        path: 'models/CablesAndPipes/BigCables_2.jpg',
+    },
+    {
+        name: 'bigCables3Model',
+        type: 'gltfModel',
+        path: 'models/CablesAndPipes/BigCables_3.glb',
+    },
+    {
+        name: 'bigCables3Texture',
+        type: 'texture',
+        path: 'models/CablesAndPipes/BigCables_3.jpg',
+    },
+    {
+        name: 'decors1Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_1.glb',
+    },
+    {
+        name: 'decors1Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_1.jpg',
+    },
+
     {
         name: 'decors2Model',
         type: 'gltfModel',
-        path: 'models/Decors2/Decors2.glb',
+        path: 'models/Decors/Decors_2.glb',
     },
     {
         name: 'decors2Texture',
         type: 'texture',
-        path: 'models/Decors2/Decors2.jpg',
+        path: 'models/Decors/Decors_2.jpg',
     },
     {
-        name: 'decors2RoughnessTexture',
+        name: 'decors3Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_3.glb',
+    },
+    {
+        name: 'decors3Texture',
         type: 'texture',
-        path: 'models/Decors2/Decors2Roughness.jpg',
+        path: 'models/Decors/Decors_3.jpg',
+    },
+    {
+        name: 'decors4Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_4.glb',
+    },
+    {
+        name: 'decors4Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_4.jpg',
+    },
+    {
+        name: 'decors5Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_5.glb',
+    },
+    {
+        name: 'decors5Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_5.jpg',
+    },
+    {
+        name: 'decors6Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_6.glb',
+    },
+    {
+        name: 'decors6Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_6.jpg',
     },
     {
         name: 'hologramModel',
@@ -124,9 +225,14 @@ const sources: Resource[] = [
         path: 'models/AnimatedProps/AnimatedProps.jpg',
     },
     {
-        name: 'animatedPropsRoughnessTexture',
+        name: 'garageDoorModel',
+        type: 'gltfModel',
+        path: 'models/AnimatedProps/GarageDoor.glb',
+    },
+    {
+        name: 'garageDoorTexture',
         type: 'texture',
-        path: 'models/AnimatedProps/AnimatedPropsRoughness.jpg',
+        path: 'models/AnimatedProps/GarageDoor.jpg',
     },
     {
         name: 'decorsRoughnessTexture',

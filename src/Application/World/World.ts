@@ -70,8 +70,8 @@ export default class World {
             //this.hitbox = new Hitboxes();
             this.addBillBoardScreen()
             this.addReflectiveFloor();
-            this.addSpotLight();
-            this.addHemisphereLighting();
+            //this.addSpotLight();
+            //this.addHemisphereLighting();
         });
     }
 
@@ -104,26 +104,14 @@ export default class World {
 
         this.reflector = new Reflector(planeGeometry, {
             color: 0x777777,
-            textureWidth: window.innerWidth * window.devicePixelRatio/ 5,
-            textureHeight: window.innerHeight * window.devicePixelRatio/ 5,
+            textureWidth: window.innerWidth * window.devicePixelRatio/ 2,
+            textureHeight: window.innerHeight * window.devicePixelRatio/ 2,
             clipBias: 0.004,
             multisample: 0.05,
             });
-            const dimPlaneMaterial = new THREE.MeshStandardMaterial({
-                //#595980 
-                color: 0x595980, // black color to dim the reflection
-                transparent: true,
-                opacity: guiParams.reflection.opacity, // low opacity to allow the reflection to be visible, but dimmed
-                roughness: guiParams.reflection.roughness
-            });
 
 
-            const circleGeometry = new THREE.CircleGeometry(FLOOR_SIZE / 2, 64);
-            this.dimPlane = new THREE.Mesh(circleGeometry, dimPlaneMaterial);
-            this.dimPlane.receiveShadow = true;
-            this.dimPlane.rotateX(-Math.PI / 2);
-            this.dimPlane.position.y = guiParams.reflection.position; // slightly above the reflector
-            this.scene.add(this.dimPlane);
+           
             this.reflector.userData.reflector = true;
             this.reflector.layers.set(0);
             this.reflector.rotateX(-Math.PI / 2);
@@ -171,11 +159,6 @@ export default class World {
         });
     }
 
-    updateReflection() {
-        (this.dimPlane.material as THREE.MeshBasicMaterial).opacity = guiParams.reflection.opacity;
-        this.dimPlane.position.y = guiParams.reflection.position;
-        (this.dimPlane.material as THREE.MeshStandardMaterial).roughness = guiParams.reflection.roughness;
-    }
 
 
     update() {
@@ -185,7 +168,7 @@ export default class World {
         if (this.cablesAndPipes) this.cablesAndPipes.update();
         if (this.decors) this.decors.update();
         if (this.BillBoardScreen) this.BillBoardScreen.forEach(screen => screen.update());
-        if(this.dimPlane) this.updateReflection();
+        
         //if(this.rain) this.rain.update();
         if(this.animatedProps) this.animatedProps.update();
         if(this.HoloHelpSreen) this.HoloHelpSreen.update();

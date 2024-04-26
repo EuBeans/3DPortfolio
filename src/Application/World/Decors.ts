@@ -19,15 +19,15 @@ export default class Decords {
     application: Application;
     scene: THREE.Scene;
     resources: Resources;
-    bakedModel: BakedModel;
-    baked2Model: BakedModel;
     mixer: THREE.AnimationMixer;
+    bakedModels: BakedModel[];
 
     constructor() {
         this.application = new Application();
         this.scene = this.application.scene;
         this.resources = this.application.resources;
         this.mixer = new THREE.AnimationMixer(this.scene);
+        this.bakedModels = [];
         this.bakeModel()
         this.setModel();
         this.addLighSource();
@@ -40,24 +40,53 @@ export default class Decords {
     }
 
     bakeModel() {
-        this.bakedModel = new BakedModel(
-            this.resources.items.gltfModel.decorsModel,
-            this.resources.items.texture.decorsTexture,
-            this.resources.items.texture.decorsRoughnessTexture,
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.decors1Model,
+            this.resources.items.texture.decors1Texture,
+            undefined,
             900
-        );
-        this.baked2Model = new BakedModel(
+        ));
+
+        this.bakedModels.push(new BakedModel(
             this.resources.items.gltfModel.decors2Model,
             this.resources.items.texture.decors2Texture,
-            this.resources.items.texture.decors2RoughnessTexture,
+            undefined,
             900
-        );
+        ));
+
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.decors3Model,
+            this.resources.items.texture.decors3Texture,
+            undefined,
+            900
+        ));
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.decors4Model,
+            this.resources.items.texture.decors4Texture,
+            undefined,
+            900
+        ));
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.decors5Model,
+            this.resources.items.texture.decors5Texture,
+            undefined,
+            900
+        ));
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.decors6Model,
+            this.resources.items.texture.decors6Texture,
+            undefined,
+            900
+        ));
+
 
         bloomObjects.forEach((objectName) => {
-            const object = this.bakedModel.getModel().getObjectByName(objectName);
-            if (object) {
-                object.layers.enable(BLOOM_SCENE_LAYER);
-            }
+            this.bakedModels.forEach((bakedModel) => {
+                const object = bakedModel.getModel().getObjectByName(objectName);
+                if (object) {
+                    object.layers.enable(BLOOM_SCENE_LAYER);
+                }
+            });
         });
     }
 
@@ -104,8 +133,9 @@ export default class Decords {
     
     }       
     setModel() {
-        this.scene.add(this.bakedModel.getModel());
-        this.scene.add(this.baked2Model.getModel());
+        this.bakedModels.forEach((bakedModel) => {
+            this.scene.add(bakedModel.getModel());
+        });
     }
 
     update() {}

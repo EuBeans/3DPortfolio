@@ -21,12 +21,13 @@ export default class LEDSigns {
     application: Application;
     scene: THREE.Scene;
     resources: Resources;
-    bakedModel: BakedModel;
+    bakedModels: BakedModel[];
 
     constructor() {
         this.application = new Application();
         this.scene = this.application.scene;
         this.resources = this.application.resources;
+        this.bakedModels = [];
         this.bakeModel()
         this.setModel();
         this.addLighSourceToLEDS()
@@ -34,33 +35,34 @@ export default class LEDSigns {
     }
 
     bakeModel() {
-        this.bakedModel = new BakedModel(
-            this.resources.items.gltfModel.ledSignsModel,
-            this.resources.items.texture.ledSignsTexture,
-            this.resources.items.texture.ledSignsRoughnessTexture,
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.ledSigns1Model,
+            this.resources.items.texture.ledSigns1Texture,
+            undefined,
             900
-        );
+        ));
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.ledSigns2Model,
+            this.resources.items.texture.ledSigns2Texture,
+            undefined,
+            900
+        ));
+
+
+
         bloomObjects.forEach((objectName) => {
-            const object = this.bakedModel.getModel().getObjectByName(objectName);
-            if (object) {
-                // Corrected typo in "GreenNeons" to match the case in the bloomObjects array
-                if (objectName === "greenNeons" || objectName === "GreenNeon") { // Corrected "GreenNeons" to "GreenNeon"
+            this.bakedModels.forEach((bakedModel) => {
+                const object = bakedModel.getModel().getObjectByName(objectName);
+                if (object) {
+              
                     object.traverse((child) => {
                         if (child instanceof THREE.Mesh) {
+                            
                             child.layers.enable(BLOOM_SCENE_LAYER);
-                            child.material.color.setHex(0x2DF447);
                         }
                     });
-                // Corrected typo in "PurperNeon" to "PurpleNeon"
-                } else if (objectName === "PurpleNeon") { // Removed the incorrect "PurperNeon" check
-                    if (object instanceof THREE.Mesh) {
-                        object.layers.enable(BLOOM_SCENE_LAYER);
-                        object.material.color.setHex(0xBB56E7);
-                    }
-                } else {
-                    object.layers.enable(BLOOM_SCENE_LAYER);
                 }
-            }
+            });
         });
     }
 
@@ -88,7 +90,9 @@ export default class LEDSigns {
 
 
     setModel() {
-        this.scene.add(this.bakedModel.getModel());
+        this.bakedModels.forEach((bakedModel) => {
+            this.scene.add(bakedModel.getModel());
+        });
     }
 
     update() {

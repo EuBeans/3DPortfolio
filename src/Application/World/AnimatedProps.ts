@@ -16,7 +16,7 @@ export default class AnimatedProps {
     application: Application;
     scene: THREE.Scene;
     resources: Resources;
-    bakedModel: BakedModel;
+    bakedModels: BakedModel[];
     mixer: AnimationMixer | null = null;
     garageDoorMixer: AnimationMixer | null = null;
     garageDoorIsOpen: boolean = false;
@@ -28,9 +28,11 @@ export default class AnimatedProps {
         this.application = new Application();
         this.scene = this.application.scene;
         this.resources = this.application.resources;
+        this.bakedModels = [];
         this.bakeModel();
         this.setModel();
         this.setFreeCamListeners();
+        
         //loadingScreenDone ui event
         UIEventBus.on('loadingScreenDone', () => {
             this.isLoadingScreenDone = true;
@@ -49,14 +51,24 @@ export default class AnimatedProps {
     }
  
     bakeModel() { 
-        this.bakedModel = new BakedModel(
+        this.bakedModels.push(new BakedModel(
             this.resources.items.gltfModel.animatedPropsModel,
             this.resources.items.texture.animatedPropsTexture,
-            this.resources.items.texture.animatedPropsRoughnessTexture,
+            undefined,
             900,
-        );
+        ));
 
-        const satelliteObject = this.bakedModel.getModel().getObjectByName("Satelite");
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.garageDoorModel,
+            this.resources.items.texture.garageDoorTexture,
+           undefined,
+            900,
+        ));
+
+       
+
+        const satelliteObject = this.bakedModels[0].getModel().getObjectByName("Satelite");
+        console.log(satelliteObject)
         if (satelliteObject instanceof THREE.Mesh) {
             satelliteObject.material.side = THREE.DoubleSide;
             satelliteObject.material.transparent = false;
@@ -67,11 +79,9 @@ export default class AnimatedProps {
             satelliteObject.renderOrder = 1;
         }
 
-        this.bakedModel.getModel().castShadow = true;
-        this.bakedModel.getModel().receiveShadow = true;
-        this.mixer = new AnimationMixer(this.bakedModel.getModel());
-        this.garageDoorMixer = new AnimationMixer(this.bakedModel.getModel()); // Assuming the garage door is part of the bakedModel
-        
+        // Assuming you want to use the first model in the bakedModels array
+        this.mixer = new AnimationMixer(this.bakedModels[0].getModel());
+        this.garageDoorMixer = new AnimationMixer(this.bakedModels[1].getModel()); // Assuming the garage door is part of the first bakedModel
     }
 
 
@@ -96,7 +106,7 @@ export default class AnimatedProps {
         UIEventBus.dispatch('doneAnimating',false);
     
         this.garageDoorMixer ? this.garageDoorMixer.stopAllAction() : null;
-        const animationClip = this.resources.items.gltfModel.animatedPropsModel.animations.find(clip => clip.name === 'gartentor_close');
+        const animationClip = this.resources.items.gltfModel.garageDoorModel.animations.find(clip => clip.name === 'gartentor_close');
         if (animationClip && this.garageDoorMixer) {
             const action = this.garageDoorMixer.clipAction(animationClip);
             action.setLoop(LoopOnce, 1);
@@ -115,8 +125,9 @@ export default class AnimatedProps {
     
     playOpenAnimation(){
         UIEventBus.dispatch('doneAnimating',false);
+
         this.garageDoorMixer ? this.garageDoorMixer.stopAllAction() : null;
-        const animationClip = this.resources.items.gltfModel.animatedPropsModel.animations.find(clip => clip.name === 'gartentor_open');
+        const animationClip = this.resources.items.gltfModel.garageDoorModel.animations.find(clip => clip.name === 'gartentor_open');
         if (animationClip && this.garageDoorMixer) {
             const action = this.garageDoorMixer.clipAction(animationClip);
             action.setLoop(LoopOnce, 1);
@@ -134,6 +145,8 @@ export default class AnimatedProps {
     }
 
     playPropAnimationLoop(){
+        console.log(this.resources.items.gltfModel.animatedPropsModel.animations)
+
         const animationClip = this.resources.items.gltfModel.animatedPropsModel.animations.find(clip => clip.name === 'ACAction');
         if (animationClip && this.mixer) {
             const acAction = this.mixer.clipAction(animationClip);
@@ -166,7 +179,9 @@ export default class AnimatedProps {
     }
 
     setModel() {
-        this.scene.add(this.bakedModel.getModel());
+        this.bakedModels.forEach(model => {
+            this.scene.add(model.getModel());
+        });
     }
 
     update() {
