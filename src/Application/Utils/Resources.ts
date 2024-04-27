@@ -79,6 +79,8 @@ export default class Resources extends EventEmitter {
                     this.loaders.objLoader.load(source.path, (file) => {
                         this.sourceLoaded(source, file);
                     });
+                    
+                }else{
                     this.toLoad--;
                 }
             }
