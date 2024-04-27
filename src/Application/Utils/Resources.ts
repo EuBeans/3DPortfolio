@@ -7,6 +7,11 @@ import EventEmitter from './EventEmitter';
 import Loading from './Loading';
 import { Resource, LoadedResource, LoadedModel, LoadedTexture, LoadedCubeTexture, LoadedAudio ,LoadedObjModel} from '../../types';
 
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+// Setup DRACOLoader
+
+
+
 export default class Resources extends EventEmitter {
     sources: Resource[];
     // Not sure about this one
@@ -34,7 +39,7 @@ export default class Resources extends EventEmitter {
 
         this.sources = sources;
 
-        this.items = { texture: {}, cubeTexture: {}, gltfModel: {}, audio: {}, objModel: {} };
+        this.items = { texture: {}, cubeTexture: {}, gltfModel: {}, audio: {}, objModel: {}};
         this.toLoad = this.sources.length;
         this.loaded = 0;
         this.application = new Application();
@@ -52,6 +57,12 @@ export default class Resources extends EventEmitter {
             audioLoader: new THREE.AudioLoader(),
             objLoader: new OBJLoader(),
         };
+        const dracoLoader = new DRACOLoader();
+        let decoderPath = 'https://www.gstatic.com/draco/v1/decoders/';
+
+        dracoLoader.setDecoderPath(decoderPath);
+        dracoLoader.setDecoderConfig({type: 'js'}); // Optional: Override detection of WASM support.
+        this.loaders.gltfLoader.setDRACOLoader(dracoLoader);
     }
 
     startLoading() {

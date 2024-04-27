@@ -3,7 +3,8 @@ type Resource =
     | CubeTextureResource
     | ModelResource
     | AudioResource
-    | ObjModelResource;
+    | ObjModelResource
+    ;
     
 
 declare interface StyleSheetCSS {
@@ -57,7 +58,8 @@ type LoadedResource =
     | LoadedCubeTexture
     | LoadedModel
     | LoadedAudio
-    | LoadedObjModel;
+    | LoadedObjModel
+    ;
 
 import { Group } from 'three';
 type LoadedObjModel = Group;
@@ -70,4 +72,4 @@ type LoadedCubeTexture = THREE.CubeTexture;
 
 type LoadedAudio = AudioBuffer;
 
-type ResourceType = 'texture' | 'cubeTexture' | 'gltfModel'|'objModel';
+type ResourceType = 'texture' | 'cubeTexture' | 'gltfModel'|'objModel ';

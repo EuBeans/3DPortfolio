@@ -355,4 +355,11 @@ const sources: Resource[] = [
     },
 ];
 
+
+sources.forEach(item => {
+    if (item.type === 'gltfModel' && item.path.endsWith('.glb')) {
+        const lastSlashIndex = item.path.lastIndexOf('/');
+        item.path = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
+    }
+});
 export default sources;
