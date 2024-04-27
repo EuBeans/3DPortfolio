@@ -55,8 +55,8 @@ export default class World {
             this.ShopWalls = new ShopWalls();
             this.screens = new Screens();
             this.ledSigns = new LEDSigns();
-            
-            
+            this.decors = new Decors();
+            this.cablesAndPipes = new CablesAndPipes();
             this.animatedProps = new AnimatedProps();
             //this.rain = new Rain();
             this.HoloHelpSreen = new HoloHelpSreen();
@@ -64,8 +64,7 @@ export default class World {
                 this.hologram = new Hologram();
                 this.addReflectiveFloor();
                 this.addBillBoardScreen();
-                this.decors = new Decors();
-                this.cablesAndPipes = new CablesAndPipes();
+
             }
             
 
