@@ -71,9 +71,9 @@ export default class Hologram {
 
         const mat = new THREE.PointsMaterial({ 
             color: 0x5e4198, 
-            size: 10
+            size: 20
         })
-        mat.color.multiplyScalar(0.4); // Darken the color by reducing its intensity to 50%
+        mat.color.multiplyScalar(0.6); // Darken the color by reducing its intensity to 50%
         mat.transparent = true;
         mat.opacity = 0.1;
         this.mesh = new THREE.Points(pointsGeometry, mat);

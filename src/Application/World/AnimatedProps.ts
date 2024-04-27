@@ -68,7 +68,6 @@ export default class AnimatedProps {
        
 
         const satelliteObject = this.bakedModels[0].getModel().getObjectByName("Satelite");
-        console.log(satelliteObject)
         if (satelliteObject instanceof THREE.Mesh) {
             satelliteObject.material.side = THREE.DoubleSide;
             satelliteObject.material.transparent = false;
@@ -110,7 +109,7 @@ export default class AnimatedProps {
         if (animationClip && this.garageDoorMixer) {
             const action = this.garageDoorMixer.clipAction(animationClip);
             action.setLoop(LoopOnce, 1);
-            action.timeScale = 3;
+            action.timeScale = 5;
             action.clampWhenFinished = true;
             action.play();
     

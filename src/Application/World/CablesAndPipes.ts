@@ -50,6 +50,12 @@ export default class CablesAndPipes {
             undefined,
             900
         ))
+        this.bakedModels.push(new BakedModel(
+            this.resources.items.gltfModel.pipesModel,
+            this.resources.items.texture.pipesTexture,
+            undefined,
+            900
+        ))
 
         bloomObjects.forEach((objectName) => {
             if (objectName.includes('PowerCableBig')) {

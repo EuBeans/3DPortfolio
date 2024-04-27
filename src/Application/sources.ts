@@ -102,7 +102,16 @@ const sources: Resource[] = [
         type: 'texture',
         path: 'models/LEDSigns/LEDSigns_2.jpg',
     },
-
+    {
+        name:"pipesModel",
+        type:"gltfModel",
+        path:"models/CablesAndPipes/Pipes.glb"
+    },
+    {
+        name:"pipesTexture",
+        type:"texture",
+        path:"models/CablesAndPipes/Pipes.jpg"
+    },
     {
         name: 'cablesModel',
         type: 'gltfModel',
@@ -203,6 +212,26 @@ const sources: Resource[] = [
         name: 'decors6Texture',
         type: 'texture',
         path: 'models/Decors/Decors_6.jpg',
+    },
+    {
+        name: 'decors7Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_7.glb',
+    },
+    {
+        name: 'decors7Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_7.jpg',
+    },
+    {
+        name: 'decors8Model',
+        type: 'gltfModel',
+        path: 'models/Decors/Decors_8.glb',
+    },
+    {
+        name: 'decors8Texture',
+        type: 'texture',
+        path: 'models/Decors/Decors_8.jpg',
     },
     {
         name: 'hologramModel',

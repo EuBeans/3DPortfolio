@@ -9,13 +9,13 @@ import Camera from '../Camera/Camera';
 import EventEmitter from '../Utils/EventEmitter';
 import {EnclosingPlane} from '../../types';
 //const SCREEN_SIZE = { w: 1280, h: 1024 };
-const SCREEN_SIZE = { w: 950, h: 800 };
+const SCREEN_SIZE = { w: 950, h: 780 };
 const IFRAME_PADDING = 32;
 const IFRAME_SIZE = {
     w: SCREEN_SIZE.w - IFRAME_PADDING,
     h: SCREEN_SIZE.h - IFRAME_PADDING,
 };
-const POSITION = new THREE.Vector3(3300, 2950, -1900);
+const POSITION = new THREE.Vector3(3470, 2920, -1890);
 const ROTATION = new THREE.Euler(0, -Math.PI/3, 0);
 
 export default class MonitorScreen extends EventEmitter {
@@ -208,6 +208,9 @@ export default class MonitorScreen extends EventEmitter {
         iframe.id = 'computer-screen';
         iframe.frameBorder = '0';
         iframe.title = 'JeanOS';
+        iframe.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.8)';
+        iframe.style.border = '1px solid rgba(255, 255, 255, 0.25)';
+        iframe.style.filter = 'brightness(2.1)';
 
         // Add iframe to container
         container.appendChild(iframe);
@@ -275,7 +278,7 @@ export default class MonitorScreen extends EventEmitter {
             smudge: {
                 texture: textures.monitorSmudgeTexture,
                 blending: THREE.AdditiveBlending,
-                opacity: 0.02,
+                opacity: 0.2,
                 offset: 24,
             },
             innerShadow: {
@@ -287,13 +290,13 @@ export default class MonitorScreen extends EventEmitter {
             video: {
                 texture: this.videoTextures['video-1'],
                 blending: THREE.AdditiveBlending,
-                opacity: 0.05,
+                opacity: 0.2,
                 offset: 10,
             },
             video2: {
                 texture: this.videoTextures['video-2'],
                 blending: THREE.AdditiveBlending,
-                opacity: 0.05,
+                opacity: 0.2,
                 offset: 15,
             },
         };

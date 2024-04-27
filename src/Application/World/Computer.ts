@@ -25,10 +25,9 @@ export default class Computer {
             this.resources.items.gltfModel.computerSetupModel,
             this.resources.items.texture.computerSetupTexture,
             undefined,
-            650
+            900
         );
-        this.bakedModel.getModel().position.copy(POSITION);
-        this.bakedModel.getModel().rotation.copy(ROTATION);
+
     }
 
     setModel() {

@@ -145,7 +145,7 @@ const indicatorVars = {
 
 const styles: StyleSheetCSS = {
     container: {
-        background: 'black',
+        background: '#187596',
         // padding: 4,
         paddingLeft: 8,
         paddingRight: 8,

@@ -145,7 +145,7 @@ const InfoOverlay: React.FC<InfoOverlayProps> = ({ visible }) => {
 
 const styles: StyleSheetCSS = {
     container: {
-        background: 'black',
+        background: '#187596',
         padding: 4,
         paddingLeft: 16,
         paddingRight: 16,

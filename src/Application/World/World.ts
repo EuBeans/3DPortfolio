@@ -70,7 +70,6 @@ export default class World {
             //this.hitbox = new Hitboxes();
             this.addBillBoardScreen()
             this.addReflectiveFloor();
-            //this.addSpotLight();
             //this.addHemisphereLighting();
         });
     }
@@ -127,38 +126,6 @@ export default class World {
             this.application.debug.getGUI().add(hemisphereLight, 'intensity', 0, 10).name('Hemisphere Light Intensity').setValue(guiParams.hemisphereLight.intensity);  
         }
     }
-
-    addSpotLight() {
-        // Define an array of spotlight configurations
-        const spotLightsConfig = [
-            { color: 0x61c4e0, params: guiParams.spotLight1, folderName: 'Spotlight 1' },
-            { color: 0x5e4198, params: guiParams.spotLight2, folderName: 'Spotlight 2' },
-            { color: 0x61c4e0, params: guiParams.spotLight3, folderName: 'Spotlight 3' },
-            { color: 0x5e4198, params: guiParams.spotLight4, folderName: 'Spotlight 4' }
-        ];
-
-        // Loop through each spotlight configuration and create the spotlight and its GUI folder
-        spotLightsConfig.forEach((config, index) => {
-            const spotlight = new THREE.SpotLight(config.color, config.params.intensity, config.params.distance, config.params.angle, config.params.penumbra, config.params.decay);
-            spotlight.position.set(config.params.x, config.params.y, config.params.z);
-            this.scene.add(spotlight);
-
-            if(this.application.debug.getGUI()){
-                    // Create GUI folder for the spotlight
-                const spotlightFolder = this.application.debug.getGUI().addFolder(config.folderName);
-                spotlightFolder.add(spotlight, 'intensity', 0, 30).name(`${config.folderName} Intensity`).setValue(config.params.intensity);
-                spotlightFolder.add(spotlight.position, 'x', -50000, 50000).name(`${config.folderName} X`).setValue(config.params.x);
-                spotlightFolder.add(spotlight.position, 'y', 0, 20000).name(`${config.folderName} Y`).setValue(config.params.y);
-                spotlightFolder.add(spotlight.position, 'z', -50000, 50000).name(`${config.folderName} Z`).setValue(config.params.z);
-                spotlightFolder.add(spotlight, 'distance', 0, 70000).name(`${config.folderName} Distance`).setValue(config.params.distance);
-                spotlightFolder.add(spotlight, 'decay', 0, 200).name(`${config.folderName} Decay`).setValue(config.params.decay);
-                spotlightFolder.add(spotlight, 'angle', 0, Math.PI).name(`${config.folderName} Angle`).setValue(config.params.angle);
-                spotlightFolder.add(spotlight, 'penumbra', 0, 1).name(`${config.folderName} Penumbra`).setValue(config.params.penumbra);
-            }
-            
-        });
-    }
-
 
 
     update() {
