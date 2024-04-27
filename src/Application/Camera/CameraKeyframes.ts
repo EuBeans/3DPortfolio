@@ -29,8 +29,8 @@ const keys: { [key in CameraKey]: CameraKeyframe } = {
     },
 
     monitor: {
-        position: new THREE.Vector3(2400, 3100, -1400),
-        focalPoint: new THREE.Vector3(3470, 2920, -1870),
+        position: new THREE.Vector3(2400, 3150, -1290),
+        focalPoint: new THREE.Vector3(3470, 2950, -1870),
     },
     loading: {
         position: new THREE.Vector3(-35000, 40000, 40000),

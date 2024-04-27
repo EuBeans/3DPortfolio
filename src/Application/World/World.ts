@@ -13,7 +13,7 @@ import * as THREE from 'three';
 import { Reflector } from 'three/examples/jsm/objects/Reflector';
 import { guiParams } from '../Utils/GuiParams';
 import BillBoardScreen from './BillBoardScreen';
-//import Rain from './Rain';
+import Rain from './Rain';
 import AnimatedProps from './AnimatedProps';
 import UIEventBus from '../UI/EventBus';
 import HoloHelpSreen from './HoloHelpSreen';
@@ -36,7 +36,7 @@ export default class World {
     cablesAndPipes: CablesAndPipes
     decors: Decors
     reflector: Reflector
-    //rain: Rain;
+    rain: Rain;
     animatedProps: AnimatedProps
     HoloHelpSreen: HoloHelpSreen
     hologram: Hologram
@@ -58,12 +58,14 @@ export default class World {
             this.decors = new Decors();
             this.cablesAndPipes = new CablesAndPipes();
             this.animatedProps = new AnimatedProps();
-            //this.rain = new Rain();
+            //
             this.HoloHelpSreen = new HoloHelpSreen();
             if (!this.application.sizes.isMobile) {
                 this.hologram = new Hologram();
+                //this.rain = new Rain();
                 this.addReflectiveFloor();
                 this.addBillBoardScreen();
+                
 
             }
             
@@ -74,7 +76,6 @@ export default class World {
             this.monitorScreen = new MonitorScreen();
             this.audioManager = new AudioManager();
             //this.hitbox = new Hitboxes();
-            //this.addHemisphereLighting();
         });
     }
 
@@ -123,13 +124,6 @@ export default class World {
 
     }
 
-    addHemisphereLighting() {
-        const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, guiParams.hemisphereLight.intensity);
-        this.scene.add(hemisphereLight);
-        if(this.application.debug.getGUI()){
-            this.application.debug.getGUI().add(hemisphereLight, 'intensity', 0, 10).name('Hemisphere Light Intensity').setValue(guiParams.hemisphereLight.intensity);  
-        }
-    }
 
 
     update() {
@@ -140,7 +134,7 @@ export default class World {
         if (this.decors) this.decors.update();
         if (this.BillBoardScreen) this.BillBoardScreen.forEach(screen => screen.update());
         
-        //if(this.rain) this.rain.update();
+        if(this.rain) this.rain.update();
         if(this.animatedProps) this.animatedProps.update();
         if(this.HoloHelpSreen) this.HoloHelpSreen.update();
         if(this.hologram) this.hologram.update();
