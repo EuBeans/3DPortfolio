@@ -60,7 +60,7 @@ export default class Application {
         this.scene = new THREE.Scene();
         this.cssScene = new THREE.Scene();
         this.overlayScene = new THREE.Scene();
-        this.resources = new Resources(!isMobile ? sourcesMobile : sources);
+        this.resources = new Resources(isMobile ? sourcesMobile : sources);
         this.camera = new Camera();
         this.renderer = new Renderer();
         this.camera.createControls();
