@@ -26,7 +26,7 @@ folders.forEach(folder => {
     if (path.extname(file) === '.glb' && !file.startsWith('compressed_')) {
       const inputPath = path.join(folderPath, file);
       const outputPath = path.join(folderPath, 'compressed_' + file);
-      const command = `gltf-pipeline -i ${inputPath} -o ${outputPath} -d --draco.quantizePositionBits 6 --draco.quantizeTexcoordBits 6 --draco.quantizeNormalBits 4 --draco.quantizeGenericBits 4`;      console.log(`Compressing: ${file} in folder ${folder}`);
+      const command = `gltf-pipeline -i ${inputPath} -o ${outputPath} -d --draco.quantizePositionBits 10 --draco.quantizeTexcoordBits 10 --draco.quantizeNormalBits 8 --draco.quantizeGenericBits 8`;      console.log(`Compressing: ${file} in folder ${folder}`);
       execSync(command, { stdio: 'inherit' });
       console.log(`Compressed: ${file} -> ${outputPath}`);
     }
