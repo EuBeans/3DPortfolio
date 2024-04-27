@@ -362,4 +362,5 @@ sources.forEach(item => {
         item.path = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
     }
 });
+console.log(sources);
 export default sources;
