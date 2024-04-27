@@ -62,6 +62,8 @@ export default class World {
             this.HoloHelpSreen = new HoloHelpSreen();
             if (!this.application.sizes.isMobile) {
                 this.hologram = new Hologram();
+                this.addReflectiveFloor();
+                this.addBillBoardScreen()
             }
             
 
@@ -71,8 +73,6 @@ export default class World {
             this.monitorScreen = new MonitorScreen();
             this.audioManager = new AudioManager();
             //this.hitbox = new Hitboxes();
-            this.addBillBoardScreen()
-            this.addReflectiveFloor();
             //this.addHemisphereLighting();
         });
     }
