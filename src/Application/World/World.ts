@@ -26,7 +26,7 @@ export default class World {
     resources: Resources;
 
     // Objects in the scene
-    environment: ShopWalls;
+    ShopWalls: ShopWalls;
     computerSetup: ComputerSetup;
     monitorScreen: MonitorScreen;
     audioManager: AudioManager;
@@ -52,18 +52,20 @@ export default class World {
         // Wait for resources
         this.resources.on('ready', () => {
             // Setup
-            this.environment = new ShopWalls();
+            this.ShopWalls = new ShopWalls();
             this.screens = new Screens();
             this.ledSigns = new LEDSigns();
-            this.cablesAndPipes = new CablesAndPipes();
-            this.decors = new Decors();
+            
+            
             this.animatedProps = new AnimatedProps();
             //this.rain = new Rain();
             this.HoloHelpSreen = new HoloHelpSreen();
             if (!this.application.sizes.isMobile) {
                 this.hologram = new Hologram();
                 this.addReflectiveFloor();
-                this.addBillBoardScreen()
+                this.addBillBoardScreen();
+                this.decors = new Decors();
+                this.cablesAndPipes = new CablesAndPipes();
             }
             
 
@@ -132,7 +134,7 @@ export default class World {
 
 
     update() {
-        if (this.environment) this.environment.update();
+        if (this.ShopWalls) this.ShopWalls.update();
         if (this.screens) this.screens.update();
         if (this.ledSigns) this.ledSigns.update();
         if (this.cablesAndPipes) this.cablesAndPipes.update();
