@@ -11,7 +11,7 @@ import Mouse from './Utils/Mouse';
 import World from './World/World';
 import Resources from './Utils/Resources';
 
-import sources from './sources';
+import { sources, sourcesMobile } from './sources';
 
 import Stats from 'stats.js';
 import Loading from './Utils/Loading';
@@ -48,6 +48,8 @@ export default class Application {
         // Global access
         //@ts-ignore
         // window.Application = this;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        console.log(isMobile);
 
         // Setup
         this.debug = new Debug();
@@ -58,7 +60,7 @@ export default class Application {
         this.scene = new THREE.Scene();
         this.cssScene = new THREE.Scene();
         this.overlayScene = new THREE.Scene();
-        this.resources = new Resources(sources);
+        this.resources = new Resources(isMobile ? sourcesMobile : sources);
         this.camera = new Camera();
         this.renderer = new Renderer();
         this.camera.createControls();

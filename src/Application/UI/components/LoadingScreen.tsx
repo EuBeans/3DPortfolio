@@ -31,7 +31,7 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
             setMobileWarning(false);
         }
     };
-
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     window.addEventListener('resize', onResize);
 
     useEffect(() => {
@@ -184,6 +184,11 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
                                 <p>Checking RAM : {14000} OK</p>
                                 <div style={styles.spacer} />
                                 <div style={styles.spacer} />
+                                {isMobile ? (
+                                    <div style={styles.spacer}> <p>You are on a mobile device.</p></div>
+                                ) : (
+                                    <div style={styles.spacer}> <p>You are not on a mobile device.</p></div>
+                                )}
                                 {showLoadingResources ? (
                                     progress == 1 ? (
                                         <p>FINISHED LOADING RESOURCES</p>

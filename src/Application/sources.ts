@@ -355,12 +355,16 @@ const sources: Resource[] = [
     },
 ];
 
+const sourcesMobile: Resource[] = [];
 
 sources.forEach(item => {
     if (item.type === 'gltfModel' && item.path.endsWith('.glb')) {
         const lastSlashIndex = item.path.lastIndexOf('/');
-        item.path = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
+        const newPath = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
+        sourcesMobile.push({ ...item, path: newPath });
+    } else {
+        sourcesMobile.push({ ...item });
     }
 });
-console.log(sources);
-export default sources;
+console.log(sources,sourcesMobile);
+export { sources, sourcesMobile };
