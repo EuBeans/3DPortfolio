@@ -1,7 +1,7 @@
 export const guiParams = {
     bloom: {
         threshold: 0,
-        strength: 2.75,
+        strength: 2,
         radius: 0.5,
         exposure: 1,
     },

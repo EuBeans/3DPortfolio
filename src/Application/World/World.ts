@@ -60,7 +60,10 @@ export default class World {
             this.animatedProps = new AnimatedProps();
             //this.rain = new Rain();
             this.HoloHelpSreen = new HoloHelpSreen();
-            this.hologram = new Hologram();
+            if (!this.application.sizes.isMobile) {
+                this.hologram = new Hologram();
+            }
+            
 
            
   
