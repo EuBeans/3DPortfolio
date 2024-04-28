@@ -65,7 +65,6 @@ export default class Renderer {
     composer: EffectComposer;
     bloomComposer: EffectComposer;
     rainComposer: EffectComposer;
-
     constructor() {
         this.application = new Application();
         this.time = this.application.time;
@@ -221,22 +220,20 @@ export default class Renderer {
         if (this.uniforms) {
             this.uniforms.u_time.value = Math.sin(this.time.current * 0.01);
         }
-
-        this.updateBloomEffect();
-        this.scene.traverse(nonBloomed)
+        if(!this.application.isMobile){
+            this.updateBloomEffect();
         
-        this.bloomComposer.render()
+            this.scene.traverse(nonBloomed)
+            
+            this.bloomComposer.render()
 
-        this.scene.traverse(restoreMaterial)
-
-        // Explicitly clear the depth buffer
-        this.instance.clearDepth();
+            this.scene.traverse(restoreMaterial)
+        }
 
         // Render the CSS3D scene
         this.cssInstance.render(this.cssScene, this.camera.instance);
 
         this.composer.render();
-
         this.overlayInstance.render(this.overlayScene, this.camera.instance);
         this.overlay.position.copy(this.camera.instance.position);
 

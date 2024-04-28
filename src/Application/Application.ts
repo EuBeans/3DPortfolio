@@ -36,6 +36,7 @@ export default class Application {
     ui: UI;
     stats: Stats | undefined;
     clock: THREE.Clock;
+    isMobile: boolean;
 
     constructor() {
         // Singleton
@@ -48,8 +49,7 @@ export default class Application {
         // Global access
         //@ts-ignore
         // window.Application = this;
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        console.log(isMobile);
+        this.isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 
         // Setup
         this.debug = new Debug();
@@ -60,7 +60,7 @@ export default class Application {
         this.scene = new THREE.Scene();
         this.cssScene = new THREE.Scene();
         this.overlayScene = new THREE.Scene();
-        this.resources = new Resources(isMobile ? sourcesMobile : sources);
+        this.resources = new Resources(this.isMobile ? sourcesMobile : sources);
         this.camera = new Camera();
         this.renderer = new Renderer();
         this.camera.createControls();

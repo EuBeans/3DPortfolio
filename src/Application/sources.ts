@@ -362,6 +362,10 @@ sources.forEach(item => {
         const lastSlashIndex = item.path.lastIndexOf('/');
         const newPath = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
         sourcesMobile.push({ ...item, path: newPath });
+    } else if (item.type === 'texture' && item.path.endsWith('.jpg')) {
+        const lastSlashIndex = item.path.lastIndexOf('/');
+        const newPath = item.path.substring(0, lastSlashIndex + 1) + 'low_res_' + item.path.substring(lastSlashIndex + 1);
+        sourcesMobile.push({ ...item, path: newPath });
     } else {
         sourcesMobile.push({ ...item });
     }
