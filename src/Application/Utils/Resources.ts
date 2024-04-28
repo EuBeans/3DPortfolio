@@ -95,6 +95,7 @@ export default class Resources extends EventEmitter {
                     this.toLoad--;
                 }
             }
+            console.log(source.path)
         }
     }
 
