@@ -92,7 +92,6 @@ export default class Resources extends EventEmitter {
                 
                 
             }
-            console.log(source.path)
         }
     }
 
