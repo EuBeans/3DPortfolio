@@ -11,11 +11,7 @@ const sources: Resource[] = [
         type: 'texture',
         path: 'models/Computer/baked_computer.jpg',
     },
-    {
-        name: 'cvPaperTexture',
-        type: 'texture',
-        path: 'models/CVPaper/CVPaper.jpg',
-    },
+
     {
         name: 'wallsModel',
         type: 'gltfModel',
@@ -270,7 +266,7 @@ const sources: Resource[] = [
     {
         name: 'monitorSmudgeTexture',
         type: 'texture',
-        path: 'textures/monitor/layers/compressed/smudges.jpg',
+        path: 'textures/monitor/layers/compressed/low_res_smudges.jpg',
     },
     {
         name: 'monitorShadowTexture',
@@ -352,7 +348,8 @@ sources.forEach(item => {
         sourcesMobile.push({ ...item, path: newPath });
     } else if (item.type === 'texture' && item.path.endsWith('.jpg')) {
         const lastSlashIndex = item.path.lastIndexOf('/');
-        const newPath = item.path.substring(0, lastSlashIndex + 1) + 'low_res_' + item.path.substring(lastSlashIndex + 1);
+        const filename = item.path.substring(lastSlashIndex + 1);
+        const newPath = item.path.includes('low_res_') ? item.path : item.path.substring(0, lastSlashIndex + 1) + 'low_res_' + filename;
         sourcesMobile.push({ ...item, path: newPath });
     } else {
         sourcesMobile.push({ ...item });

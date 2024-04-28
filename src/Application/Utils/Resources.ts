@@ -44,7 +44,6 @@ export default class Resources extends EventEmitter {
         this.loaded = 0;
         this.application = new Application();
         this.loading = this.application.loading;
-        console.log(this.sources)
 
         this.setLoaders();
         this.startLoading();
@@ -71,27 +70,35 @@ export default class Resources extends EventEmitter {
             if (source.type === 'gltfModel') {
                 this.loaders.gltfLoader.load(source.path, (file) => {
                     this.sourceLoaded(source, file);
+                }, undefined, (error) => {
+                    console.error('Failed to load GLTF model:', error, source.path);
                 });
             } else if (source.type === 'texture') {
                 this.loaders.textureLoader.load(source.path, (file) => {
                     file.encoding = THREE.sRGBEncoding;
                     this.sourceLoaded(source, file);
+                }, undefined, (error) => {
+                    console.error('Failed to load texture:', error, source.path);
                 });
             } else if (source.type === 'cubeTexture') {
                 this.loaders.cubeTextureLoader.load(source.path, (file) => {
                     this.sourceLoaded(source, file);
+                }, undefined, (error) => {
+                    console.error('Failed to load cube texture:', error);
                 });
             } else if (source.type === 'audio') {
                 this.loaders.audioLoader.load(source.path, (buffer) => {
                     this.sourceLoaded(source, buffer);
+                }, undefined, (error) => {
+                    console.error('Failed to load audio:', error);
                 });
             } else if (source.type === 'objModel') {
                 this.loaders.objLoader.load(source.path, (file) => {
                     this.sourceLoaded(source, file);
+                }, undefined, (error) => {
+                    console.error('Failed to load obj model:', error);
                 });
-                
             }
-           
         }
     }
 

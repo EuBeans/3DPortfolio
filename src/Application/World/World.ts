@@ -64,14 +64,11 @@ export default class World {
                 this.hologram = new Hologram();
                 //this.rain = new Rain();
                 this.addReflectiveFloor();
-                this.addBillBoardScreen();
+
                 
 
             }
-            
-
-           
-  
+            this.addBillBoardScreen();  
             this.computerSetup = new ComputerSetup();
             this.monitorScreen = new MonitorScreen();
             this.audioManager = new AudioManager();

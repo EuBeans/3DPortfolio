@@ -23,8 +23,8 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
     const [counter, setCounter] = useState(0);
     const [resources] = useState<string[]>([]);
     const [mobileWarning, setMobileWarning] = useState(window.innerWidth < 768);
-
-    const onResize = () => {
+    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+    (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);    const onResize = () => {
         if (window.innerWidth < 768) {
             setMobileWarning(true);
         } else {
@@ -183,7 +183,11 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
                                 <p>Checking RAM : {14000} OK</p>
                                 <div style={styles.spacer} />
                                 <div style={styles.spacer} />
-                          
+                                {isMobile ? (
+                                    <div style={styles.spacer}> <p>You are on a mobile device.</p></div>
+                                ) : (
+                                    <div style={styles.spacer}> <p>You are not on a mobile device.</p></div>
+                                )}
                                 {showLoadingResources ? (
                                     progress == 1 ? (
                                         <p>FINISHED LOADING RESOURCES</p>
