@@ -86,14 +86,11 @@ export default class Resources extends EventEmitter {
                     this.sourceLoaded(source, buffer);
                 });
             } else if (source.type === 'objModel') {
-                if (!this.application.isMobile) {
-                    this.loaders.objLoader.load(source.path, (file) => {
-                        this.sourceLoaded(source, file);
-                    });
-                    
-                }else{
-                    this.toLoad--;
-                }
+                this.loaders.objLoader.load(source.path, (file) => {
+                    this.sourceLoaded(source, file);
+                });
+                
+                
             }
             console.log(source.path)
         }
