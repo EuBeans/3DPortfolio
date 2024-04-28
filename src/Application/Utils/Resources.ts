@@ -44,6 +44,7 @@ export default class Resources extends EventEmitter {
         this.loaded = 0;
         this.application = new Application();
         this.loading = this.application.loading;
+        console.log(this.sources)
 
         this.setLoaders();
         this.startLoading();
@@ -64,7 +65,6 @@ export default class Resources extends EventEmitter {
         dracoLoader.setDecoderConfig({type: 'js'}); // Optional: Override detection of WASM support.
         this.loaders.gltfLoader.setDRACOLoader(dracoLoader);
     }
-
     startLoading() {
         // Load each source
         for (const source of this.sources) {
@@ -90,8 +90,8 @@ export default class Resources extends EventEmitter {
                     this.sourceLoaded(source, file);
                 });
                 
-                
             }
+           
         }
     }
 

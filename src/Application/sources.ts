@@ -358,6 +358,10 @@ const sources: Resource[] = [
 const sourcesMobile: Resource[] = [];
 
 sources.forEach(item => {
+    if (item.name === 'hologramModel') {
+        // Skip adding hologramModel to sourcesMobile
+        return;
+    }
     if (item.type === 'gltfModel' && item.path.endsWith('.glb')) {
         const lastSlashIndex = item.path.lastIndexOf('/');
         const newPath = item.path.substring(0, lastSlashIndex + 1) + 'compressed_' + item.path.substring(lastSlashIndex + 1);
@@ -370,5 +374,4 @@ sources.forEach(item => {
         sourcesMobile.push({ ...item });
     }
 });
-console.log(sources,sourcesMobile);
 export { sources, sourcesMobile };
