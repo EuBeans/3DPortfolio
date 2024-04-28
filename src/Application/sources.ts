@@ -12,22 +12,6 @@ const sources: Resource[] = [
         path: 'models/Computer/baked_computer.jpg',
     },
     {
-        name: 'environmentModel',
-        type: 'gltfModel',
-        path: 'models/World/environment.glb',
-    },
-    {
-        name: 'environmentTexture',
-        type: 'texture',
-        path: 'models/World/baked_environment.jpg',
-    },
-
-    {
-        name: 'cvPaperModel',
-        type: 'gltfModel',
-        path: 'models/CVPaper/CVPaper.glb',
-    },
-    {
         name: 'cvPaperTexture',
         type: 'texture',
         path: 'models/CVPaper/CVPaper.jpg',
