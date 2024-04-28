@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const directoryPath = 'static/textures';
+const directoryPath = 'static/models';
 const folders = fs.readdirSync(directoryPath, { withFileTypes: true })
   .filter(dirent => dirent.isDirectory())
   .map(dirent => dirent.name);
@@ -11,7 +11,7 @@ const folders = fs.readdirSync(directoryPath, { withFileTypes: true })
 folders.forEach(folder => {
   const folderPath = path.join(directoryPath, folder);
   fs.readdirSync(folderPath).forEach(file => {
-    if (file.startsWith('lowRes_')) {
+    if (file.startsWith('low_res_')) {
       const filePath = path.join(folderPath, file);
       fs.unlinkSync(filePath);
       console.log(`Deleted: ${filePath}`);
@@ -27,7 +27,7 @@ folders.forEach(folder => {
       const inputPath = path.join(folderPath, file);
       const outputPath = path.join(folderPath, `low_res_${file}`);
       sharp(inputPath)
-        .resize(2048, 2048) // Resize to 2K
+        .resize(1024, 1024) // Resize to 1K for more compression
         .toFile(outputPath, (err, info) => {
           if (err) {
             console.error(`Error processing ${file}:`, err);
