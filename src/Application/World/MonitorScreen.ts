@@ -150,38 +150,50 @@ export default class MonitorScreen extends EventEmitter {
         // Bubble mouse move events to the main application, so we can affect the camera
         iframe.onload = () => {
             if (iframe.contentWindow) {
-                window.addEventListener('message', (event) => {
-                    var evt = new CustomEvent(event.data.type, {
+                const handleEvent = (event: Event) => {
+                    if ((event as any).handled) return; // Prevent handling the same event more than once
+
+                    var evtType = event.type.startsWith('touch') && this.application.isMobile ? 'mousemove' : event.type;
+                    var evt = new CustomEvent(evtType, {
                         bubbles: true,
                         cancelable: false,
                     });
 
-                    // @ts-ignore
-                    evt.inComputer = true;
-                    if (event.data.type === 'mousemove') {
+                    // Mark the event as handled
+                    (evt as any).handled = true;
+
+                    if (evtType === 'mousemove') {
                         var clRect = iframe.getBoundingClientRect();
                         const { top, left, width, height } = clRect;
                         const widthRatio = width / IFRAME_SIZE.w;
                         const heightRatio = height / IFRAME_SIZE.h;
 
+                        // Assuming touch event has been normalized to have clientX/Y
                         // @ts-ignore
                         evt.clientX = Math.round(
-                            event.data.clientX * widthRatio + left
+                            (event as MouseEvent).clientX * widthRatio + left
                         );
-                        //@ts-ignore
+                        // @ts-ignore
                         evt.clientY = Math.round(
-                            event.data.clientY * heightRatio + top
+                            (event as MouseEvent).clientY * heightRatio + top
                         );
-                    } else if (event.data.type === 'keydown') {
+                    } else if (evtType === 'keydown' || evtType === 'keyup') {
                         // @ts-ignore
-                        evt.key = event.data.key;
-                    } else if (event.data.type === 'keyup') {
-                        // @ts-ignore
-                        evt.key = event.data.key;
+                        evt.key = event.key;
                     }
 
                     iframe.dispatchEvent(evt);
-                });
+                };
+
+                // Listen for touch events
+                if (this.application.isMobile) {
+                    window.addEventListener('touchstart', handleEvent, false);
+                    window.addEventListener('touchmove', handleEvent, false);
+                    window.addEventListener('touchend', handleEvent, false);
+                }
+
+                // Existing mouse event listeners
+                window.addEventListener('message', handleEvent, false);
             }
         };
 

@@ -49,7 +49,7 @@ export default class Application {
         // Global access
         //@ts-ignore
         // window.Application = this;
-        this.isMobile = !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        this.isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
 
         // Setup
         this.debug = new Debug();
