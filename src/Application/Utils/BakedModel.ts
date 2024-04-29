@@ -11,26 +11,21 @@ export default class BakedModel {
     constructor(model: LoadedModel, texture?: LoadedTexture, roughnessTexture?: LoadedTexture,scale?: number,) {
         this.model = model;
         this.texture = texture as THREE.Texture;
-        this.roughnessTexture = roughnessTexture as THREE.Texture;
 
         if (this.texture) {
             this.texture.flipY = false;
             this.texture.encoding = THREE.sRGBEncoding;
+            this.texture.minFilter = THREE.NearestMipMapNearestFilter;
+            this.texture.magFilter = THREE.LinearMipMapLinearFilter;
+            this.texture.type = THREE.HalfFloatType;
+            this.texture.generateMipmaps = true;
+            this.texture.needsUpdate = true;
+            this.texture.wrapS = THREE.ClampToEdgeWrapping;
+            this.texture.wrapT = THREE.ClampToEdgeWrapping;
+
         }
 
-        // Load and apply the roughness texture if provided
-        if (this.roughnessTexture) {
-
-            // Use MeshStandardMaterial to support roughness maps
-            this.material = new THREE.MeshStandardMaterial({
-                map: this.texture,
-                //roughnessMap: this.roughnessTexture,
-                roughness: 1,
-                metalness: 0,
-
-                // Set roughness if you want a default value or control it through the texture
-            });
-        } else if (this.texture) {
+     if (this.texture) {
             this.material = new THREE.MeshBasicMaterial({
                 map: this.texture,
             });

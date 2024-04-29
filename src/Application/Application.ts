@@ -49,8 +49,8 @@ export default class Application {
         // Global access
         //@ts-ignore
         // window.Application = this;
-        this.isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-        (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+        this.isMobile = (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+        (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1));
         // Setup
         this.debug = new Debug();
         this.sizes = new Sizes();

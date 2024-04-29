@@ -89,10 +89,10 @@ export default class Renderer {
             powerPreference: 'high-performance',
         });
         // Settings
-        // this.instance.physicallyCorrectLights = true;
+         this.instance.physicallyCorrectLights = true;
         this.instance.outputEncoding = THREE.sRGBEncoding;
-        // this.instance.toneMapping = THREE.ACESFilmicToneMapping;
-        // this.instance.toneMappingExposure = 0.9;
+        this.instance.toneMapping = THREE.ACESFilmicToneMapping;
+        this.instance.toneMappingExposure = 0.9;
         this.instance.setSize(this.sizes.width, this.sizes.height);
         this.instance.setPixelRatio(Math.min(this.sizes.pixelRatio, 2));
         this.instance.setClearColor(0x000000, 0.0);

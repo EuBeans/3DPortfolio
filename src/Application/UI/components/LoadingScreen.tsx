@@ -25,7 +25,7 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
     const [mobileWarning, setMobileWarning] = useState(window.innerWidth < 768);
     const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
     (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);    const onResize = () => {
-        if (window.innerWidth < 768) {
+        if (isMobile) {
             setMobileWarning(true);
         } else {
             setMobileWarning(false);

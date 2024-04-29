@@ -1,12 +1,12 @@
 export const guiParams = {
     bloom: {
-        threshold: 0,
-        strength: 2,
-        radius: 0.5,
-        exposure: 1,
+        threshold: 0.7,
+        strength: 3.5,
+        radius: 1.4,
+        exposure: 0,
     },
     reflection: {
-        opacity: 0.8,
+        opacity: 0.9,
         position: 30,  // Updated from 19.2
         roughness: 1,
     },
