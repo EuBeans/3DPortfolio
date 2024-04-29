@@ -6,6 +6,9 @@ import {StyleSheetCSS} from '../../../types';
 type LoadingProps = {};
 
 const LoadingScreen: React.FC<LoadingProps> = () => {
+    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+    (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);    
+    
     const [progress, setProgress] = useState(0);
     const [toLoad, setToLoad] = useState(0);
     const [loaded, setLoaded] = useState(0);
@@ -22,9 +25,9 @@ const LoadingScreen: React.FC<LoadingProps> = () => {
     const [webGLError, setWebGLError] = useState(false);
     const [counter, setCounter] = useState(0);
     const [resources] = useState<string[]>([]);
-    const [mobileWarning, setMobileWarning] = useState(window.innerWidth < 768);
-    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-    (/iPad|Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);    const onResize = () => {
+    const [mobileWarning, setMobileWarning] = useState(isMobile);
+
+    const onResize = () => {
         if (isMobile) {
             setMobileWarning(true);
         } else {
