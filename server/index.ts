@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const compression = require('compression');
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
 app.use(cors());
 app.use(compression());
@@ -61,7 +61,7 @@ app.post('/api/send-email', (req, res) => {
         });
 });
 
-// listen to app on port 8080
+// listen to app on port 8081
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 });

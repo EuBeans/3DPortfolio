@@ -47,6 +47,7 @@ export default class Camera extends EventEmitter {
     targetKeyframe: CameraKey | undefined;
     keyframes: { [key in CameraKey]: CameraKeyframeInstance };
     garageDoneAnimating: boolean = true;
+    monitorExitButton: HTMLButtonElement | null;
     constructor() {
         super();
         this.application = new Application();
@@ -114,11 +115,18 @@ export default class Camera extends EventEmitter {
                 UIEventBus.dispatch('transitionStarted',undefined);
             }
         });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                this.exitMonitor();
+            }
+        });
         
         this.transition(CameraKey.IDLE);
         this.setPostLoadTransition();
         this.setInstance();
         this.setFreeCamListeners();
+        this.createMonitorExitButton();
     
     }
 
@@ -269,6 +277,32 @@ export default class Camera extends EventEmitter {
         });
     }
 
+    createMonitorExitButton() {
+        const button = document.createElement('button');
+        button.id = 'monitor-exit';
+        button.className = 'monitor-exit';
+        button.textContent = 'Exit';
+        button.style.position = 'fixed';
+        button.style.top = '20px';
+        button.style.right = '20px';
+        button.style.zIndex = '10';
+        button.style.display = 'none';
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.exitMonitor();
+        });
+        document.body.appendChild(button);
+        this.monitorExitButton = button;
+    }
+
+    exitMonitor() {
+        if (this.currentKeyframe !== CameraKey.MONITOR) return;
+        if (!this.garageDoneAnimating) return;
+        this.transitionAlongPath(this.idleCameraPath, 2000, CameraKey.IDLE);
+        UIEventBus.dispatch('transitionStarted', undefined);
+    }
+
     resize() {
         this.instance.aspect = this.sizes.width / this.sizes.height;
         this.instance.updateProjectionMatrix();
@@ -321,5 +355,10 @@ export default class Camera extends EventEmitter {
 
         this.instance.position.copy(this.position);
         this.instance.lookAt(this.focalPoint);
+
+        if (this.monitorExitButton) {
+            this.monitorExitButton.style.display =
+                this.currentKeyframe === CameraKey.MONITOR ? 'block' : 'none';
+        }
     }
 }

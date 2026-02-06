@@ -9,13 +9,13 @@ import Camera from '../Camera/Camera';
 import EventEmitter from '../Utils/EventEmitter';
 import {EnclosingPlane} from '../../types';
 //const SCREEN_SIZE = { w: 1280, h: 1024 };
-const SCREEN_SIZE = { w: 950, h: 780 };
+const SCREEN_SIZE = { w: 960, h: 980 };
 const IFRAME_PADDING = 32;
 const IFRAME_SIZE = {
     w: SCREEN_SIZE.w - IFRAME_PADDING,
     h: SCREEN_SIZE.h - IFRAME_PADDING,
 };
-const POSITION = new THREE.Vector3(3470, 2920, -1890);
+const POSITION = new THREE.Vector3(3470, 2790, -1890);
 const ROTATION = new THREE.Euler(0, -Math.PI/3, 0);
 
 export default class MonitorScreen extends EventEmitter {

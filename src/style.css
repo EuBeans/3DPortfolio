@@ -37,6 +37,22 @@ body {
     width: 26.5px;
 }
 
+.monitor-exit {
+    background: #187596;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-family: "Dina", monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.monitor-exit:hover {
+    filter: brightness(1.08);
+}
+
 @media only screen and (max-width: 768px) {
     .interface-wrapper {
         width: 100%;
@@ -91,4 +107,3 @@ body {
         transform: translate(0.075px, 0.025px) scale(1, 1);
     }
 }
-

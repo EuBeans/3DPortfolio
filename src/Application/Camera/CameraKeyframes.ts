@@ -21,6 +21,13 @@ export class CameraKeyframeInstance {
 
 
 
+const MONITOR_CENTER = new THREE.Vector3(3470, 2920, -1890);
+const MONITOR_ROTATION = new THREE.Euler(0, -Math.PI / 3, 0);
+const MONITOR_NORMAL = new THREE.Vector3(0, 0, 1)
+    .applyEuler(MONITOR_ROTATION)
+    .normalize();
+const MONITOR_DISTANCE = 850;
+
 const keys: { [key in CameraKey]: CameraKeyframe } = {
     //guiParams use t
     idle: {            
@@ -29,8 +36,10 @@ const keys: { [key in CameraKey]: CameraKeyframe } = {
     },
 
     monitor: {
-        position: new THREE.Vector3(2400, 3150, -1290),
-        focalPoint: new THREE.Vector3(3470, 2950, -1870),
+        position: MONITOR_CENTER.clone().add(
+            MONITOR_NORMAL.clone().multiplyScalar(MONITOR_DISTANCE)
+        ),
+        focalPoint: MONITOR_CENTER.clone(),
     },
     loading: {
         position: new THREE.Vector3(-35000, 40000, 40000),
@@ -63,6 +72,9 @@ export class MonitorKeyframe extends CameraKeyframeInstance {
     sizes: Sizes;
     targetPos: THREE.Vector3;
     origin: THREE.Vector3;
+    center: THREE.Vector3;
+    normal: THREE.Vector3;
+    baseDistance: number;
 
     constructor() {
         const keyframe = keys.monitor;
@@ -71,12 +83,19 @@ export class MonitorKeyframe extends CameraKeyframeInstance {
         this.sizes = this.application.sizes;
         this.origin = new THREE.Vector3().copy(keyframe.position);
         this.targetPos = new THREE.Vector3().copy(keyframe.position);
+        this.center = MONITOR_CENTER.clone();
+        this.normal = MONITOR_NORMAL.clone();
+        this.baseDistance = this.origin.clone().sub(this.center).dot(this.normal);
     }
 
     update() {
         const aspect = this.sizes.height / this.sizes.width;
         const additionalZoom = this.sizes.width < 768 ? 0 : 600;
-        this.targetPos.z = this.origin.z + aspect * 1200 - additionalZoom;
+        const zoomOffset = aspect * 1200 - additionalZoom;
+        const distance = this.baseDistance + zoomOffset;
+        this.targetPos.copy(this.center).add(
+            this.normal.clone().multiplyScalar(distance)
+        );
         this.position.copy(this.targetPos);
     }
 }
