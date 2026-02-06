@@ -187,7 +187,7 @@ export default class MonitorScreen extends EventEmitter {
 
         // Set iframe attributes
         // PROD
-        iframe.src = 'https://eubeans.github.io/portfolio/';
+        iframe.src = 'https://eubeans.github.io/portfolio/?embed=1';
         /**
          * Use dev server is query params are present
          *
@@ -197,7 +197,7 @@ export default class MonitorScreen extends EventEmitter {
          */
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('dev')) {
-            iframe.src = 'http://localhost:3000/';
+            iframe.src = 'http://localhost:3000/?embed=1';
         }
         iframe.style.width = this.screenSize.width +20 + 'px';
         iframe.style.height = this.screenSize.height +20  + 'px';
